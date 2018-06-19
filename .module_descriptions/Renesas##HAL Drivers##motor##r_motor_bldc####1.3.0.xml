@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" ?>
+<synergyModuleDescription>
+    <config id="config.driver.motor_bldc" path="ssp_cfg/driver/r_motor_bldc_cfg.h" version="0">
+        <!--constraint display="Requires GPT${module.driver.motor_bldc.channel_u} Overflow Interrupt enabled">
+            "${module.driver.motor_bldc.p_callback}" === "NULL" || "${board.icu.gpt.gpt${module.driver.motor_bldc.channel_u}.counter_overflow}" != "board.icu.common.irq.disabled"
+        </constraint--> 
+        <property default="config.driver.motor_bldc.param_checking_enable.bsp" display="Parameter Checking" id="config.driver.motor_bldc.param_checking_enable">
+            <option display="Default (BSP)" id="config.driver.motor_bldc.param_checking_enable.bsp" value="(BSP_CFG_PARAM_CHECKING_ENABLE)"/>
+            <option display="Enabled" id="config.driver.motor_bldc.param_checking_enable.enabled" value="(1)"/>
+            <option display="Disabled" id="config.driver.motor_bldc.param_checking_enable.disabled" value="(0)"/>
+        </property>
+        <content>
+        </content>
+    </config>   
+    <module config="config.driver.motor_bldc" display="Driver|Timers|${module.driver.motor.name} BLDC Motor Driver on r_motor" id="module.driver.motor_bldc" version="1">
+        <constraint display="Module instances must have unique names">
+            "${interface.driver.motor_bldc.${module.driver.motor.name}}" === "1"
+        </constraint>
+
+		<!--  Example of providing Interface so system knows we are here and can use this module as a dependency. -->
+        <provides interface="interface.driver.motor" />
+        <provides interface="interface.driver.motor.${module.driver.motor.name}" />
+        <provides interface="interface.driver.motor_bldc" />
+        <provides interface="interface.driver.motor_bldc.${module.driver.motor.name}" />
+        <provides interface="interface.driver.motor_bldc.${module.driver.motor.pwm_ch_u}" />
+		
+        <!--  Example of property to be set. Modules have a name field when more than 1 is allowed. -->
+        <property id="module.driver.motor.name" display="Name" default="g_r_motor_bldc${_instance}">
+            <constraint display="Name must be a valid C symbol">testSymbol("${module.driver.motor.name}")</constraint>
+        </property>             
+		
+       <property default="module.driver.motor.params.default" display="Motor Parameters" id="module.driver.motor.params">
+			<option display="Set the fields below" id="module.driver.motor.params.default" value="(0)"/>
+        </property>
+        <property default="4" display="    Pole Pairs" id="module.driver.motor.pole_pairs">
+            <constraint display="Value must be within 1 to 20">testInteger("${module.driver.motor.pole_pairs}")  &amp;&amp; ("${module.driver.motor.pole_pairs}" &gt;= 1)</constraint>
+        </property>
+        <property default="1200" display="    Inductance [uH]" id="module.driver.motor.inductance">
+        </property>
+        <property default="15" display="    Back EMF [V/krpm]" id="module.driver.motor.bemf_coeff">
+        </property>
+        <property default="24" display="    Bus Voltage [V]" id="module.driver.motor.bus_voltage">
+            <constraint display="Value must be within 1 to 200">testInteger("${module.driver.motor.pole_pairs}")  &amp;&amp; ("${module.driver.motor.pole_pairs}" &gt;= 1)</constraint>
+        </property>
+        <property default="module.driver.motor.commutation_mode.sin" display="Commutation Mode" id="module.driver.motor.commutation_mode">
+            <option display="Sinusoidal" id="module.driver.motor.commutation_mode.sin" value="COMMUTATION_SIN"/>
+            <option display="Sinusoidal w/FOC" id="module.driver.motor.commutation_mode.foc" value="COMMUTATION_FOC"/>
+            <option display="Trapezoidal" id="module.driver.motor.commutation_mode.trap" value="COMMUTATION_TRAP"/>
+            <option display="Forced" id="module.driver.motor.commutation_mode.forced" value="COMMUTATION_FORCED"/>
+            <option display="External" id="module.driver.motor.commutation_mode.ext" value="COMMUTATION_EXT"/>
+        </property>
+        <property default="module.driver.motor.control_mode.voltage" display="Control Mode" id="module.driver.motor.control_mode">
+            <option display="Voltage Control" id="module.driver.motor.control_mode.voltage" value="CONTROL_MODE_VOLTAGE"/>
+            <option display="Torque Control" id="module.driver.motor.control_mode.torque" value="CONTROL_MODE_TORQUE"/>
+            <option display="Speed Control" id="module.driver.motor.control_mode.speed" value="CONTROL_MODE_SPEED"/>
+        </property>
+        <property default="module.driver.motor.output_mode.independent_a" display="PWM Output Mode" id="module.driver.motor.output_mode">
+            <option display="Independent A" id="module.driver.motor.output_mode.independent_a" value="PWM_OUT_INDEPENDENT_A"/>
+            <option display="Independent B" id="module.driver.motor.output_mode.independent_b" value="PWM_OUT_INDEPENDENT_B"/>
+            <option display="Complementary" id="module.driver.motor.output_mode.complementary" value="PWM_OUT_COMPLEMENTARY"/>
+        </property>
+        <property default="3" display="GPT Channel U" id="module.driver.motor.pwm_ch_u">
+            <constraint display="Value must be within 0 to 13">testInteger("${module.driver.motor.pwm_ch_u}")  &amp;&amp; ("${module.driver.motor.pwm_ch_u}" &gt;= 0)</constraint>
+        </property>
+        <property default="4" display="GPT Channel V" id="module.driver.motor.pwm_ch_v">
+            <constraint display="Value must be within 0 to 13">testInteger("${module.driver.motor.pwm_ch_v}")  &amp;&amp; ("${module.driver.motor.pwm_ch_v}" &gt;= 0)</constraint>
+        </property>
+        <property default="7" display="GPT Channel W" id="module.driver.motor.pwm_ch_w">
+            <constraint display="Value must be within 0 to 13">testInteger("${module.driver.motor.pwm_ch_w}")  &amp;&amp; ("${module.driver.motor.pwm_ch_w}" &gt;= 0)</constraint>
+        </property>
+        <property default="20" display="PWM Carrier Frequency [KHz]" id="module.driver.motor.pwm_freq_KHz">
+            <constraint display="Value must be within 5 to 200">testInteger("${module.driver.motor.pwm_freq_KHz}")  &amp;&amp; ("${module.driver.motor.pwm_freq_KHz}" &gt;= 5)</constraint>
+        </property>
+        <property default="0" display="Dead Time [us]" id="module.driver.motor.dead_time_us">
+            <constraint display="Value must be within 0 to 20">testInteger("${module.driver.motor.dead_time_us}")  &amp;&amp; ("${module.driver.motor.dead_time_us}" &gt;= 0)</constraint>
+        </property>
+        <property default="0" display="ADC Channel U" id="module.driver.motor.adc_ch_u">
+            <constraint display="Value must be within 0 to 17">testInteger("${module.driver.motor.adc_ch_u}")  &amp;&amp; ("${module.driver.motor.adc_ch_u}" &gt;= 0)</constraint>
+        </property>
+        <property default="1" display="ADC Channel V" id="module.driver.motor.adc_ch_v">
+            <constraint display="Value must be within 0 to 17">testInteger("${module.driver.motor.adc_ch_v}")  &amp;&amp; ("${module.driver.motor.adc_ch_v}" &gt;= 0)</constraint>
+        </property>
+        <property default="15000" display="ADC Range [mA]" id="module.driver.motor.adc_range_mA">
+            <constraint display="Value must be positive integer">testInteger("${module.driver.motor.adc_range_mA}")  &amp;&amp; ("${module.driver.motor.adc_range_mA}" &gt;= 0)</constraint>
+        </property>
+        <property default="6000" display="Current Limit [mA]" id="module.driver.motor.crnt_limit_mA">
+            <constraint display="Value must be positive integer">testInteger("${module.driver.motor.crnt_limit_mA}")  &amp;&amp; ("${module.driver.motor.crnt_limit_mA}" &gt;= 0)</constraint>
+        </property>
+        <property default="100" display="Current Limit Time [ms]" id="module.driver.motor.crnt_limit_time_ms">
+            <constraint display="Value must be positive integer">testInteger("${module.driver.motor.crnt_limit_time_ms}")  &amp;&amp; ("${module.driver.motor.crnt_limit_time_ms}" &gt;= 0)</constraint>
+        </property>
+        <property default="100" display="IQ KP" id="module.driver.motor.kp_q">
+            <constraint display="Value must be positive integer">testInteger("${module.driver.motor.kp_q}")  &amp;&amp; ("${module.driver.motor.kp_q}" &gt;= 0)</constraint>
+        </property>
+        <property default="100" display="IQ KI" id="module.driver.motor.ki_q">
+            <constraint display="Value must be positive integer">testInteger("${module.driver.motor.ki_q}")  &amp;&amp; ("${module.driver.motor.ki_q}" &gt;= 0)</constraint>
+        </property>
+        <property default="100" display="ID KP" id="module.driver.motor.kp_d">
+            <constraint display="Value must be positive integer">testInteger("${module.driver.motor.kp_d}")  &amp;&amp; ("${module.driver.motor.kp_d}" &gt;= 0)</constraint>
+        </property>
+        <property default="100" display="ID KI" id="module.driver.motor.ki_d">
+            <constraint display="Value must be positive integer">testInteger("${module.driver.motor.ki_d}")  &amp;&amp; ("${module.driver.motor.ki_d}" &gt;= 0)</constraint>
+        </property>
+        <interrupt node="board.icu.gpt.gpt${module.driver.motor.pwm_ch_u}.counter_overflow" />
+        <header>
+/** BLDC Motor on Motor instance */
+#define TIMER_ON_GPT_CALLBACK_USED_${module.driver.motor.name} (1)
+
+        </header>
+        <includes>
+            #include &quot;r_motor_api.h&quot;
+            #include &quot;r_motor_bldc.h&quot;
+        </includes>
+        <declarations>     
+			/** BLDC Motor on Motor instance */
+			#if ${module.driver.motor.irq_ipl} != BSP_IRQ_DISABLED
+			#if !defined(SSP_SUPPRESS_ISR_${module.driver.motor.name}) &amp;&amp; !defined(SSP_SUPPRESS_ISR_GPT${module.driver.motor.pwm_ch_u})
+			void pwm_counter_overflow (void);
+			#define SSP_SUPPRESS_ISR_GPT${module.driver.motor.pwm_ch_u}
+			SSP_VECTOR_DEFINE_CHAN(pwm_counter_overflow, GPT, COUNTER_OVERFLOW, ${module.driver.motor.pwm_ch_u});
+			#endif
+			#endif
+
+            motor_ctrl_t ${module.driver.motor.name}_ctrl; 
+            motor_cfg_t ${module.driver.motor.name}_cfg =
+            {
+				/* Motor parameters */
+				.type					= MOTOR_BLDC,
+				.pole_pairs				= ${module.driver.motor.pole_pairs},
+				.inductance_uH			= ${module.driver.motor.inductance},
+				.bemf_v_krpm			= ${module.driver.motor.bemf_coeff},
+				.bus_voltage			= ${module.driver.motor.bus_voltage},
+
+				/* PWM Generator configuration */
+				.pwm_ch_u		  		= ${module.driver.motor.pwm_ch_u},
+				.pwm_ch_v		  		= ${module.driver.motor.pwm_ch_v},
+				.pwm_ch_w		  		= ${module.driver.motor.pwm_ch_w},
+				
+				/* Control algorithm configuration */
+				.commutation_mode		= ${module.driver.motor.commutation_mode},
+				.control_mode			= ${module.driver.motor.control_mode},
+
+				.dead_time_us			= ${module.driver.motor.dead_time_us},
+				.pwm_freq_KHz			= ${module.driver.motor.pwm_freq_KHz},
+				.output_mode	  		= ${module.driver.motor.output_mode},
+
+				/* Current feedback configuration */
+				.adc_ch_u				= ${module.driver.motor.adc_ch_u},
+				.adc_ch_v				= ${module.driver.motor.adc_ch_v},
+				.adc_range_mA			= ${module.driver.motor.adc_range_mA},
+
+				.crnt_limit_mA			= ${module.driver.motor.crnt_limit_mA},
+				.crnt_limit_time_ms		= ${module.driver.motor.crnt_limit_time_ms},
+
+				/* FOC algorithm configuration */
+				.kp_d					= ${module.driver.motor.kp_d},
+				.ki_d					= ${module.driver.motor.ki_d},
+				.kp_q					= ${module.driver.motor.kp_q},
+				.ki_q					= ${module.driver.motor.ki_q},
+				
+                .p_extend             	= NULL,
+            };
+    
+            motor_instance_t ${module.driver.motor.name} =
+            {
+                .p_ctrl = &amp;${module.driver.motor.name}_ctrl,
+                .p_cfg =  &amp;${module.driver.motor.name}_cfg,
+                .p_api =  &amp;g_motor_bldc
+            };
+
+        </declarations>
+        <init>
+			/************* BLDC MOTOR ****************/
+			g_motors_api[g_motor_count++] = p_cfg->p_motor->p_api;
+        </init>
+    </module>
+</synergyModuleDescription>
+

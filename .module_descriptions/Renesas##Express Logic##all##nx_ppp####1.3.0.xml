@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<synergyModuleDescription>
+    <module display="X-Ware|NetX|Protocols|NetX PPP Common" id="module.el.nx_ppp_common" common="1" version="1">
+        <requires interface="_rtos" />
+        <requires interface="interface.el.nx_common" display="Add NetX Common" />
+        <requires interface="interface.el.nx_md5" display="Add NetX MD5" />
+        <provides interface="interface.el.nx_ppp_common" />
+        <property default="g_nx_ppp_common${_instance}" display="Name" id="module.el.nx_ppp_common.name">
+            <constraint display="Name must be a valid C symbol">testSymbol("${module.el.nx_ppp_common.name}")</constraint>
+        </property>
+        <includes>
+            #include "nx_ppp.h"
+        </includes>
+    </module>
+</synergyModuleDescription>

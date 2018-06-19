@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<synergyModuleDescription>
+    <config id="config.el.nx_ppp_common" path="ssp_cfg/framework/el/nx_ppp_common_cfg.h" version="0">
+        <property default="1500" display="PPP MRU Size" id="config.el.nx_ppp_common.mru_size">
+            <constraint display="Value must be a non-negative integer">
+                testInteger("${config.el.nx_ppp_common.mru_size}")  &amp;&amp; ("${config.el.nx_ppp_common.mru_size}" &gt;= 0)
+            </constraint>
+        </property>
+		<property default="1500" display="PPP Minimum MRU Size" id="config.el.nx_ppp_common.minimum_mru_size">
+            <constraint display="Value must be a non-negative integer">
+                testInteger("${config.el.nx_ppp_common.minimum_mru_size}")  &amp;&amp; ("${config.el.nx_ppp_common.minimum_mru_size}" &gt;= 0)
+            </constraint>
+        </property>
+	<property default="0" display="PPP thread time slice. Legal time-slice values range from 1 to 0xFFFFFFFF (inclusive). A value of TX_NO_TIME_SLICE (a value of 0) disables time-slicing of thread." id="config.el.nx_ppp_common.thread_time_slice">
+            <constraint display="Value must be a non-negative integer">
+                testInteger("${config.el.nx_ppp_common.thread_time_slice}")  &amp;&amp; ("${config.el.nx_ppp_common.thread_time_slice}" &gt;= 0)
+            </constraint>
+        </property>
+	<property default="32" display="User name buffer size for PAP login" id="config.el.nx_ppp_common.pap_username_size">
+            <constraint display="Value must be a non-negative integer">
+                testInteger("${config.el.nx_ppp_common.pap_username_size}")  &amp;&amp; ("${config.el.nx_ppp_common.pap_username_size}" &gt;= 0)
+            </constraint>
+        </property>
+	<property default="32" display="Password buffer size for PAP login" id="config.el.nx_ppp_common.pap_password_size">
+            <constraint display="Value must be a non-negative integer">
+                testInteger("${config.el.nx_ppp_common.pap_password_size}")  &amp;&amp; ("${config.el.nx_ppp_common.pap_password_size}" &gt;= 0)
+            </constraint>
+        </property>
+        <property default="32" display="Buffer size of the random value to process the CHAP challenge name" id="config.el.nx_ppp_common.chap_random_value_size">
+            <constraint display="Value must be a non-negative integer">
+                testInteger("${config.el.nx_ppp_common.chap_random_value_size}")  &amp;&amp; ("${config.el.nx_ppp_common.chap_random_value_size}" &gt;= 0)
+            </constraint>
+        </property>
+	<property default="16" display="Buffer size of the hash value to process the CHAP challenge name" id="config.el.nx_ppp_common.chap_hash_value_size">
+            <constraint display="Value must be a non-negative integer">
+                testInteger("${config.el.nx_ppp_common.chap_hash_value_size}")  &amp;&amp; ("${config.el.nx_ppp_common.chap_hash_value_size}" &gt;= 0)
+            </constraint>
+        </property>		
+		<content>
+/** Set the link transfer size. */
+#ifndef NX_PPP_MRU
+#define NX_PPP_MRU                                (${config.el.nx_ppp_common.mru_size})
+#endif
+
+/** Minimum MRU to accept in  MRU parsed from received LCP configuration request. */
+#ifndef NX_PPP_MINIMUM_MRU
+#define NX_PPP_MINIMUM_MRU                        (${config.el.nx_ppp_common.minimum_mru_size})
+#endif
+
+/* Define the thread time slice. */
+#ifndef NX_PPP_THREAD_TIME_SLICE
+#define NX_PPP_THREAD_TIME_SLICE                  (${config.el.nx_ppp_common.thread_time_slice})
+#endif
+
+/* User name buffer size for PAP login. */
+#ifndef NX_PPP_NAME_SIZE
+#define NX_PPP_NAME_SIZE                          (${config.el.nx_ppp_common.pap_username_size})
+#endif
+
+/* Password buffer size for PAP login. */
+#ifndef NX_PPP_PASSWORD_SIZE
+#define NX_PPP_PASSWORD_SIZE                      (${config.el.nx_ppp_common.pap_password_size})
+#endif
+
+/* Buffer size of the random value to process the CHAP challenge name */
+#ifndef NX_PPP_VALUE_SIZE
+#define NX_PPP_VALUE_SIZE                         (${config.el.nx_ppp_common.chap_random_value_size})
+#endif
+
+/* Buffer size of the hash value to process the CHAP challenge name */
+#ifndef NX_PPP_HASHED_VALUE_SIZE
+#define NX_PPP_HASHED_VALUE_SIZE                  (${config.el.nx_ppp_common.chap_hash_value_size})
+#endif
+        </content>
+    </config>
+    <module config="config.el.nx_ppp_common" display="X-Ware|NetX|Protocols|NetX PPP Common" id="module.el.nx_ppp_common" common="1" version="1">
+        <requires interface="_rtos" />
+        <requires interface="interface.el.nx_common" display="Add NetX Common" />
+        <requires interface="interface.el.nx_md5" display="Add NetX MD5" />
+        <provides interface="interface.el.nx_ppp_common" />
+        <property default="g_nx_ppp_common${_instance}" display="Name" id="module.el.nx_ppp_common.name">
+            <constraint display="Name must be a valid C symbol">testSymbol("${module.el.nx_ppp_common.name}")</constraint>
+        </property>
+        <includes>
+            #include "nx_ppp.h"
+        </includes>
+    </module>
+</synergyModuleDescription>

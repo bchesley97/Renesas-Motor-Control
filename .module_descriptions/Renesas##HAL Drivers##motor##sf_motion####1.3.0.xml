@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" ?>
+<synergyModuleDescription>
+    <config id="config.framework.sf_motion" path="ssp_cfg/framework/sf_motion_cfg.h" version="0">
+        <property default="config.framework.sf_motion.param_checking_enable.bsp" display="Parameter Checking" id="config.framework.sf_motion.param_checking_enable">
+            <option display="Default (BSP)" id="config.framework.sf_motion.param_checking_enable.bsp" value="(BSP_CFG_PARAM_CHECKING_ENABLE)"/>
+            <option display="Enabled" id="config.framework.sf_motion.param_checking_enable.enabled" value="(1)"/>
+            <option display="Disabled" id="config.framework.sf_motion.param_checking_enable.disabled" value="(0)"/>
+        </property>
+        <content>
+#define SF_MOTION_CFG_PARAM_CHECKING_ENABLE ${config.framework.sf_motion.param_checking_enable}
+        </content>
+    </config>   
+    <module config="config.framework.sf_motion" display="Framework|Services|${module.framework.sf_motion.name} Motion Control Framework on sf_motion" id="module.framework.sf_motion_on_sf_motion" version="1">
+        <!--  Constrain motion -->
+        <constraint display="Module instances must have unique names">
+            "${interface.framework.sf_motion.${module.framework.sf_motion.name}}" === "1"
+        </constraint>
+        <requires id="module.framework.sf_motion.requires.motor" interface="interface.driver.motor" display="Add Motor Driver" >
+        </requires>
+        <requires id="module.framework.sf_motion.requires.encoder" interface="interface.driver.encoder" display="Add Encoder Driver" >
+        </requires>
+		<!--  Provided Interfaces -->
+        <provides interface="interface.framework.sf_motion" />
+        <provides interface="interface.framework.sf_motion_on_sf_motion" />
+        <provides interface="interface.framework.sf_motion.${module.framework.sf_motion.name}" />
+        <!--  Example of property to be set. Modules have a name field when more than 1 is allowed. -->
+        <property id="module.framework.sf_motion.name" display="Name" default="g_sf_motion${_instance}">
+            <constraint display="Name must be a valid C symbol">testSymbol("${module.framework.sf_motion.name}")</constraint>
+        </property>             
+        <property default="module.framework.sf_motion.profile_mode.trap" display="Velocity Profile" id="module.framework.sf_motion.profile_mode">
+            <option display="Trapeziodal" id="module.framework.sf_motion.profile_mode.trap" value="VPGM_Trapezoidal"/>
+            <option display="Spline Curve" id="module.framework.sf_motion.profile_mode.spline" value="VPGM_Spline"/>
+            <option display="Bezier Curve" id="module.framework.sf_motion.profile_mode.bezier" value="VPGM_Bezier"/>
+            <option display="PVT Stream" id="module.framework.sf_motion.profile_mode.pvt" value="VPGM_PosVelTime"/>
+            <option display="VT Stream" id="module.framework.sf_motion.profile_mode.vt" value="VPGM_PathPoints"/>
+        </property>
+        <property default="module.framework.sf_motion.phasing_mode.forced" display="Phasing Mode" id="module.framework.sf_motion.phasing_mode">
+            <option display="Brute Force Method" id="module.framework.sf_motion.phasing_mode.forced" value="PIM_FORCED"/>
+            <option display="Hall Sensors Based" id="module.framework.sf_motion.phasing_mode.halls" value="PIM_HALLS_BASED"/>
+            <option display="Encoder Index Based" id="module.framework.sf_motion.phasing_mode.indexing" value="PIM_INDEXING"/>
+            <option display="Dithering Algorithm" id="module.framework.sf_motion.phasing_mode.dithering" value="PIM_DITHERING"/>
+            <option display="Phase Inductance" id="module.framework.sf_motion.phasing_mode.dithering" value="PIM_INDUCTIVE"/>
+            <option display="Absolute Encoder" id="module.framework.sf_motion.phasing_mode.dithering" value="PIM_APE_BASED"/>
+        </property>
+        <property default="500" display="Phasing Time[ms]" id="module.framework.sf_motion.phasing_time">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.phasing_time}")  &amp;&amp; ("${module.framework.sf_motion.phasing_time}" &gt;= 0)</constraint>
+        </property>
+        <property default="3000" display="Phasing Power" id="module.framework.sf_motion.phasing_power">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.phasing_power}")  &amp;&amp; ("${module.framework.sf_motion.phasing_power}" &gt;= 0)</constraint>
+        </property>
+        <property default="module.framework.sf_motion.auto_stop_mode.smooth" display="Auto Stop Mode" id="module.framework.sf_motion.auto_stop_mode">
+            <option display="Smooth" id="module.framework.sf_motion.auto_stop_mode.smooth" value="MOTION_STOP_SMOOTH"/>
+            <option display="Abrupt" id="module.framework.sf_motion.auto_stop_mode.abrupt" value="MOTION_STOP_ABRUPT"/>
+            <option display="Servo Off" id="module.framework.sf_motion.auto_stop_mode.off" value="MOTION_STOP_SERVO_OFF"/>
+        </property>
+       <property default="module.framework.sf_motion.pid_params.default" display="PID Parameters" id="module.framework.sf_motion.pid_params">
+			<option display="Set the fields below" id="module.framework.sf_motion.pid_params.default" value="(0)"/>
+        </property>
+        <property default="20" display="    KP" id="module.framework.sf_motion.kp">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.kp}")  &amp;&amp; ("${module.framework.sf_motion.kp}" &gt;= 0)</constraint>
+        </property>
+        <property default="20"  display="    KI" id="module.framework.sf_motion.ki">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.ki}")  &amp;&amp; ("${module.framework.sf_motion.ki}" &gt;= 0)</constraint>
+        </property>
+        <property default="500" display="    KD" id="module.framework.sf_motion.kd">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.kd}")  &amp;&amp; ("${module.framework.sf_motion.kd}" &gt;= 0)</constraint>
+        </property>
+        <property default="300" display="    IL" id="module.framework.sf_motion.il">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.il}")  &amp;&amp; ("${module.framework.sf_motion.il}" &gt;= 0)</constraint>
+        </property>
+        <property default="100" display="    DS" id="module.framework.sf_motion.ds">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.ds}")  &amp;&amp; ("${module.framework.sf_motion.ds}" &gt;= 0)</constraint>
+        </property>
+        <property default="1000" display="Pos Err Limit [ec]" id="module.framework.sf_motion.pos_err_limit_ec">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.pos_err_limit_ec}")  &amp;&amp; ("${module.framework.sf_motion.pos_err_limit_ec}" &gt;= 0)</constraint>
+        </property>
+        <property default="100" display="Pos Err Time [ms]" id="module.framework.sf_motion.pos_err_time_ms">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.pos_err_time_ms}")  &amp;&amp; ("${module.framework.sf_motion.pos_err_time_ms}" &gt;= 0)</constraint>
+        </property>
+        <property default="IOPORT_PORT_03_PIN_05" display="Out Amp Enable" id="module.framework.sf_motion.pin_ae">
+        </property>
+        <property default="IOPORT_PORT_06_PIN_06" display="In Amp Fault" id="module.framework.sf_motion.pin_fault">
+        </property>
+        <property default="IN_F1" display="Hall Sensor U" id="module.framework.sf_motion.pin_hall_u">
+        </property>
+        <property default="IN_R1" display="Hall Sensor V" id="module.framework.sf_motion.pin_hall_v">
+        </property>
+        <property default="IN_X1" display="Hall Sensor W" id="module.framework.sf_motion.pin_hall_w">
+        </property>
+        <property default="0" display="Brake Out" id="module.framework.sf_motion.brake">
+            <constraint display="Value must be positive integer">testInteger("${module.framework.sf_motion.brake}")  &amp;&amp; ("${module.framework.sf_motion.brake}" &gt;= 0)</constraint>
+        </property>
+        <property default="NULL" display="Callback" id="module.framework.sf_motion.p_callback">
+            <constraint display="Name must be a valid C symbol">testSymbol("${module.framework.sf_motion.p_callback}")</constraint>
+        </property>
+        <header>
+/* Motion Framework instance */
+extern sf_motion_instance_t ${module.framework.sf_motion.name};
+#ifdef ${module.framework.sf_motion.p_callback}
+	#define MOTION_CALLBACK_USED_${module.framework.sf_motion.name} (0)
+#else
+	#define MOTION_CALLBACK_USED_${module.framework.sf_motion.name} (1)
+#endif
+
+#if MOTION_CALLBACK_USED_${module.framework.sf_motion.name}
+	/** Declaration of user callback function. This function MUST be defined in the user application.*/
+	void ${module.framework.sf_motion.p_callback}(sf_motion_callback_args_t * p_args);          
+#endif
+        </header>
+        <includes>
+            #include &quot;sf_motion.h&quot;
+        </includes>
+        <declarations>            
+/************* MOTION CONTROL FRAMEWORK ****************/
+#if MOTION_CALLBACK_USED_${module.framework.sf_motion.name}
+	#if defined(__ICCARM__)
+		#define ${module.framework.sf_motion.p_callback}_WEAK_ATTRIBUTE
+		#pragma weak ${module.framework.sf_motion.p_callback} = ${module.framework.sf_motion.p_callback}_internal
+	#elif defined(__GNUC__)
+		#define ${module.framework.sf_motion.p_callback}_WEAK_ATTRIBUTE __attribute__ ((weak, alias("${module.framework.sf_motion.p_callback}_internal")))
+	#endif
+	void ${module.framework.sf_motion.p_callback}(sf_motion_callback_args_t * p_args) ${module.framework.sf_motion.p_callback}_WEAK_ATTRIBUTE;
+#endif
+			
+            sf_motion_ctrl_t ${module.framework.sf_motion.name}_ctrl; 
+            sf_motion_cfg_t ${module.framework.sf_motion.name}_cfg =
+            {
+				/* Requested Modes of operation */
+				.profile_mode 		= ${module.framework.sf_motion.profile_mode},
+				.auto_stop_mode		= ${module.framework.sf_motion.auto_stop_mode},
+				.pos_loop_dflt  =
+					{
+					.kp = ${module.framework.sf_motion.kp},
+					.ki = ${module.framework.sf_motion.ki},
+					.kd = ${module.framework.sf_motion.kd},
+					.il = ${module.framework.sf_motion.il}&lt;&lt;8,
+					.ds_time_us = ${module.framework.sf_motion.ds},
+					},
+				.phasing_pars	= 
+					{
+					.mode = ${module.framework.sf_motion.phasing_mode},
+					.time = ${module.framework.sf_motion.phasing_time},
+					.power = ${module.framework.sf_motion.phasing_power},
+					},
+
+				/* Amplifier interface configuration */
+				.pin_ae          	= ${module.framework.sf_motion.pin_ae},
+				.pin_fault         	= ${module.framework.sf_motion.pin_fault},
+				
+				/* Hall sensor feedback configuration */
+				.pin_hall_u			= ${module.framework.sf_motion.pin_hall_u},
+				.pin_hall_v			= ${module.framework.sf_motion.pin_hall_v},
+				.pin_hall_w			= ${module.framework.sf_motion.pin_hall_w},
+				
+				/* Brake output configuration */
+				.pin_brake			= ${module.framework.sf_motion.brake},
+				
+				/* Fault control parameters */
+				.pos_err_limit_ec	= ${module.framework.sf_motion.pos_err_limit_ec},
+				.pos_err_time_ms	= ${module.framework.sf_motion.pos_err_time_ms},
+				
+				.p_encoder    		= &amp;${module.framework.sf_motion.requires.encoder::module.driver.encoder.name},
+				.p_motor    		= &amp;${module.framework.sf_motion.requires.motor::module.driver.motor.name},
+                .p_callback         = ${module.framework.sf_motion.p_callback},
+                .p_extend           = NULL,
+            };
+    
+            sf_motion_instance_t ${module.framework.sf_motion.name} =
+            {
+                .p_ctrl = &amp;${module.framework.sf_motion.name}_ctrl,
+                .p_cfg =  &amp;${module.framework.sf_motion.name}_cfg,
+                .p_api =  &amp;g_sf_motion_on_sf_motion,
+            };
+			
+#if MOTION_CALLBACK_USED_${module.framework.sf_motion.name}
+/*******************************************************************************************************************//**
+ * @brief      This is a weak example callback function.  It should be overridden by defining a user callback function 
+ *             with the prototype below.
+ *               - void ${module.framework.sf_motion.p_callback}(sf_motion_callback_args_t * p_args)
+ *
+ * @param[in]  p_args  Callback arguments used to identify what caused the callback.
+ **********************************************************************************************************************/
+void ${module.framework.sf_motion.p_callback}_internal(sf_motion_callback_args_t * p_args);
+void ${module.framework.sf_motion.p_callback}_internal(sf_motion_callback_args_t * p_args)
+{
+	/** Do nothing. */
+	SSP_PARAMETER_NOT_USED(p_args);
+}
+#endif			
+        </declarations>
+        <init>
+/************* MOTION CONTROL FRAMEWORK ****************/
+            ssp_err_t ssp_err_${module.framework.sf_motion.name};
+            ssp_err_${module.framework.sf_motion.name} = ${module.framework.sf_motion.name}.p_api->open(${module.framework.sf_motion.name}.p_ctrl, ${module.framework.sf_motion.name}.p_cfg);
+            if (SSP_SUCCESS != ssp_err_${module.framework.sf_motion.name})
+            {
+                while (1);
+            }
+        </init>
+    </module>
+</synergyModuleDescription>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<synergyModuleDescription>
+  <config id="config.board.s5d9_pillar_arduino_module" path="ssp_cfg/bsp/bsp_board_cfg.h" version="0">
+    <content>#include "../../../synergy/board/s5d9_pillar_arduino_module/bsp.h"</content>
+  </config>
+  <board config="config.board.s5d9_pillar_arduino_module" device="R7FS5D97E2A01CLK" display="S5D9_PILLAR_ARDUINO_MODULE" id="board.s5d9_pillar_arduino_module" version="0"/>
+</synergyModuleDescription>

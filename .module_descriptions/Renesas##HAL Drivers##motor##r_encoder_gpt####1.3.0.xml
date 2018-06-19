@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" ?>
+<synergyModuleDescription>
+    <config id="config.driver.encoder_gpt" path="ssp_cfg/driver/r_encoder_gpt_cfg.h" version="0">
+        <property default="config.driver.encoder_gpt.param_checking_enable.bsp" display="Parameter Checking" id="config.driver.encoder_gpt.param_checking_enable">
+            <option display="Default (BSP)" id="config.driver.encoder_gpt.param_checking_enable.bsp" value="(BSP_CFG_PARAM_CHECKING_ENABLE)"/>
+            <option display="Enabled" id="config.driver.encoder_gpt.param_checking_enable.enabled" value="(1)"/>
+            <option display="Disabled" id="config.driver.encoder_gpt.param_checking_enable.disabled" value="(0)"/>
+        </property>
+        <content>
+#define ENCODER_GPT_CFG_PARAM_CHECKING_ENABLE ${config.driver.encoder_gpt.param_checking_enable}
+        </content>
+    </config>   
+    <module config="config.driver.encoder_gpt" display="Driver|Input|${module.driver.encoder.name} Incremental Encoder Driver on r_encoder" id="module.driver.encoder_gpt" version="1">
+        <constraint display="Module instances must have unique names">
+            "${interface.driver.encoder_gpt.${module.driver.encoder.name}}" === "1"
+        </constraint>
+
+		<!--  Interfaces to let system knows we are here and can use this module as a dependency. -->
+        <provides interface="interface.driver.encoder" />
+        <provides interface="interface.driver.encoder.${module.driver.encoder.name}" />
+        <provides interface="interface.driver.encoder_gpt" />
+        <provides interface="interface.driver.encoder_gpt.${module.driver.encoder.name}" />
+		
+        <!--  Properties to be set. Modules have a name field when more than 1 is allowed. -->
+        <property id="module.driver.encoder.name" display="Name" default="g_r_encoder_gpt${_instance}">
+            <constraint display="Name must be a valid C symbol">testSymbol("${module.driver.encoder.name}")</constraint>
+        </property>             
+        <property default="2" display="GPT Channel" id="module.driver.encoder.channel">
+            <constraint display="Value must be within 0 to 13">testInteger("${module.driver.encoder.channel}")  &amp;&amp; ("${module.driver.encoder.channel}" &gt;= 0)</constraint>
+        </property>
+        <property default="4000" display="Counts/Revolution" id="module.driver.encoder.ec_per_rev">
+        </property>
+        <property default="module.driver.driver.encoder.reversed.no" display="Direction Reversed" id="module.driver.encoder.reversed">
+            <option display="False" id="module.driver.driver.encoder.reversed.no" value="0"/>
+            <option display="True" id="module.driver.driver.encoder.reversed.yes" value="1"/>
+        </property>
+        <property default="1" display="Pos Capture Trigger" id="module.driver.encoder.trigger">
+        </property>
+        <header>
+            /** Encoder on GPT instance */
+            extern encoder_instance_t ${module.driver.encoder.name};
+        </header>
+        <includes>
+            #include &quot;r_encoder_api.h&quot;
+            #include &quot;r_encoder_gpt.h&quot;
+        </includes>
+        <declarations>            
+			/************* ENCODER on GPT ****************/
+			encoder_ctrl_t ${module.driver.encoder.name}_ctrl;
+            encoder_cfg_t ${module.driver.encoder.name}_cfg =
+            {
+				.channel              = ${module.driver.encoder.channel},
+				.channel_aux          = 0,
+				.ec_per_rev			  = ${module.driver.encoder.ec_per_rev},
+				.reversed			  = ${module.driver.encoder.reversed},
+				.trigger			  = ${module.driver.encoder.trigger},
+                .p_extend             = NULL,
+            };
+    
+            encoder_instance_t ${module.driver.encoder.name} =
+            {
+                .p_ctrl = &amp;${module.driver.encoder.name}_ctrl,
+                .p_cfg =  &amp;${module.driver.encoder.name}_cfg,
+                .p_api =  &amp;g_encoder_on_gpt
+            };
+        </declarations>
+        <init>
+			/************* ENCODER on GPT ****************/
+            ssp_err_t ssp_err_${module.driver.encoder.name};
+            ssp_err_${module.driver.encoder.name} = ${module.driver.encoder.name}.p_api->open(${module.driver.encoder.name}.p_ctrl, ${module.driver.encoder.name}.p_cfg);
+            if (SSP_SUCCESS != ssp_err_${module.driver.encoder.name})
+            {
+                while (1);
+            }
+        </init>
+    </module>
+</synergyModuleDescription>
+

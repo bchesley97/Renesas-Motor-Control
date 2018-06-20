@@ -49,7 +49,7 @@ SCI0: RXD_MISO
 SCI0: SCL
 SCI1: SCK
 SPI0: MISO"
-"P101","131","SCI0_TXD_MOSI","SCI0_TXD0_SDA0_MOSI0","Low","None","Peripheral mode","CMOS","None","AGT0: AGTEE
+"P101","131","GPIO","","Low","IRQ1","Output mode (Initial Low)","CMOS","None","AGT0: AGTEE
 BUS0: D1_DQ1
 GLCDC0: LCD_CLK
 IIC1: SDA
@@ -84,7 +84,7 @@ POEG1: GTETRG
 SCI8: RXD_MISO
 SCI8: SCL
 SPI0: SSL1"
-"P105","127","SCI8_TXD_MOSI","SCI8_TXD8_SDA8_MOSI8","Low","None","Peripheral mode","CMOS","None","BUS0: D5_DQ5
+"P105","127","","","","","Disabled","","","BUS0: D5_DQ5
 GLCDC0: LCD_TCON3
 IRQ0: IRQ00
 KINT0: KRM5
@@ -322,11 +322,11 @@ GPT3: GTIOCB
 PDC0: PIXD6
 RTC0: RTCIC2
 SSI0: SSIWS"
-"P405","6","","","","","Disabled","","","ETHERC1: TXD_EN
+"P405","6","GPT1_GTIOCA","","Low","","Peripheral mode","CMOS","None","ETHERC1: TXD_EN
 GPT1: GTIOCA
 PDC0: PIXD5
 SSI0: SSITXD"
-"P406","7","","","","","Disabled","","","ETHERC1: TXD1
+"P406","7","GPT1_GTIOCB","","Low","","Peripheral mode","CMOS","None","ETHERC1: TXD1
 GPT1: GTIOCB
 PDC0: PIXD4
 SSI0: SSIRXD"
@@ -457,14 +457,14 @@ SDHI1: CD"
 "P507","147","GPIO","AEN2","Low","","Output mode (Initial Low)","CMOS","None","ADC1: AN19
 SCI5: CTS_RTS_SS
 SDHI1: WP"
-"P511","176","SCI4_RXD_MISO","RXD2","","None","Peripheral mode","CMOS","None","CAN1: CRX
+"P511","176","GPT0_GTIOCB","","","None","Peripheral mode","CMOS","None","CAN1: CRX
 GPT0: GTIOCB
 IIC2: SDA
 IRQ0: IRQ15
 PDC0: PCKO
 SCI4: RXD_MISO
 SCI4: SCL"
-"P512","175","SCI4_TXD_MOSI","TXD2","","None","Peripheral mode","CMOS","None","CAN1: CTX
+"P512","175","GPT0_GTIOCA","","","None","Peripheral mode","CMOS","None","CAN1: CTX
 GPT0: GTIOCA
 IIC2: SCL
 IRQ0: IRQ14
@@ -510,11 +510,11 @@ PDC0: PIXD0"
 PDC0: HSYNC"
 "P705","13","","","","","Disabled","","","ETHERC1: CRS_DV
 PDC0: PIXCLK"
-"P706","14","SCI3_RXD_MISO","RXD3","Low","None","Peripheral mode","CMOS","None","IRQ0: IRQ07
+"P706","14","","","","","Disabled","","","IRQ0: IRQ07
 SCI3: RXD_MISO
 SCI3: SCL
 USBHS0: OVRCURB"
-"P707","15","SCI3_TXD_MOSI","TXD3","Low","None","Peripheral mode","CMOS","None","IRQ0: IRQ08
+"P707","15","","","","","Disabled","","","IRQ0: IRQ08
 SCI3: SDA
 SCI3: TXD_MOSI
 USBHS0: OVRCURA"

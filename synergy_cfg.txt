@@ -83,11 +83,11 @@ Synergy Configuration
       P014 152 DAC0_DA - - - "Analog mode" - - "ADC0: AN05; ADC1: AN05; CMP0: IVREF3; DAC120: DA" 
       P015 151 CMP0_IVCMP1 - - - "Analog mode" - - "ADC0: AN06; ADC1: AN06; CMP0: IVCMP1; DAC121: DA; IRQ0: IRQ13" 
       P100 132 POEG0_GTETRG GPT_Port_Output_Enable_GTETRGA Low None "Peripheral mode" CMOS None "AGT0: AGTIO; BUS0: D0_DQ0; GLCDC0: LCD_EXTCLK; IIC1: SCL; IRQ0: IRQ02; KINT0: KRM0; POEG0: GTETRG; SCI0: RXD_MISO; SCI0: SCL; SCI1: SCK; SPI0: MISO" 
-      P101 131 SCI0_TXD_MOSI SCI0_TXD0_SDA0_MOSI0 Low None "Peripheral mode" CMOS None "AGT0: AGTEE; BUS0: D1_DQ1; GLCDC0: LCD_CLK; IIC1: SDA; IRQ0: IRQ01; KINT0: KRM1; POEG1: GTETRG; SCI0: SDA; SCI0: TXD_MOSI; SCI1: CTS_RTS_SS; SPI0: MOSI" 
+      P101 131 GPIO - Low IRQ1 "Output mode (Initial Low)" CMOS None "AGT0: AGTEE; BUS0: D1_DQ1; GLCDC0: LCD_CLK; IIC1: SDA; IRQ0: IRQ01; KINT0: KRM1; POEG1: GTETRG; SCI0: SDA; SCI0: TXD_MOSI; SCI1: CTS_RTS_SS; SPI0: MOSI" 
       P102 130 GPT2_GTIOCB GPT02__Pin_Option_A_GTIOC2B_A Low - "Peripheral mode" CMOS None "ADC0: ADTRG; AGT0: AGTO; BUS0: D2_DQ2; GLCDC0: LCD_TCON0; GPT2: GTIOCB; KINT0: KRM2; OPS0: GTOWLO; SCI0: SCK; SPI0: RSPCK" 
       P103 129 GPT2_GTIOCA GPT02__Pin_Option_A_GTIOC2A_A Low - "Peripheral mode" CMOS None "BUS0: D3_DQ3; GLCDC0: LCD_TCON1; GPT2: GTIOCA; KINT0: KRM3; OPS0: GTOWUP; SCI0: CTS_RTS_SS; SPI0: SSL0" 
       P104 128 POEG1_GTETRG GPT_Port_Output_Enable_GTETRGB Low None "Peripheral mode" CMOS None "BUS0: D4_DQ4; GLCDC0: LCD_TCON2; IRQ0: IRQ01; KINT0: KRM4; POEG1: GTETRG; SCI8: RXD_MISO; SCI8: SCL; SPI0: SSL1" 
-      P105 127 SCI8_TXD_MOSI SCI8_TXD8_SDA8_MOSI8 Low None "Peripheral mode" CMOS None "BUS0: D5_DQ5; GLCDC0: LCD_TCON3; IRQ0: IRQ00; KINT0: KRM5; POEG0: GTETRG; SCI8: SDA; SCI8: TXD_MOSI; SPI0: SSL2" 
+      P105 127 - - - - Disabled - - "BUS0: D5_DQ5; GLCDC0: LCD_TCON3; IRQ0: IRQ00; KINT0: KRM5; POEG0: GTETRG; SCI8: SDA; SCI8: TXD_MOSI; SPI0: SSL2" 
       P106 126 GPT8_GTIOCB GPT08__Pin_Option_A_GTIOC8B_A Low - "Peripheral mode" CMOS None "BUS0: D6_DQ6; GLCDC0: LCD_DATA00; GPT8: GTIOCB; KINT0: KRM6; SCI8: SCK; SPI0: SSL3" 
       P107 125 GPT8_GTIOCA GPT08__Pin_Option_A_GTIOC8A_A Low - "Peripheral mode" CMOS None "BUS0: D7_DQ7; GLCDC0: LCD_DATA01; GPT8: GTIOCA; KINT0: KRM7; SCI8: CTS_RTS_SS" 
       P108 89 DEBUG0_TMS JTAG_TMS Low - "Peripheral mode" CMOS None "DEBUG0: SWDIO; DEBUG0: TMS; GPT0: GTIOCB; SCI9: CTS_RTS_SS; SPI1: SSL0" 
@@ -129,8 +129,8 @@ Synergy Configuration
       P402 3 - - - - Disabled - - "AGT0: AGTIO; AGT1: AGTIO; CAN0: CRX; ETHERC0: MDIO; IRQ0: IRQ04; RTC0: RTCIC0; SCI7: RXD_MISO; SCI7: SCL" 
       P403 4 - - - - Disabled - - "AGT0: AGTIO; AGT1: AGTIO; ETHERC1: MDC; GPT3: GTIOCA; PDC0: PIXD7; RTC0: RTCIC1; SCI7: CTS_RTS_SS; SSI0: SSISCK" 
       P404 5 - - - - Disabled - - "ETHERC1: MDIO; GPT3: GTIOCB; PDC0: PIXD6; RTC0: RTCIC2; SSI0: SSIWS" 
-      P405 6 - - - - Disabled - - "ETHERC1: TXD_EN; GPT1: GTIOCA; PDC0: PIXD5; SSI0: SSITXD" 
-      P406 7 - - - - Disabled - - "ETHERC1: TXD1; GPT1: GTIOCB; PDC0: PIXD4; SSI0: SSIRXD" 
+      P405 6 GPT1_GTIOCA - Low - "Peripheral mode" CMOS None "ETHERC1: TXD_EN; GPT1: GTIOCA; PDC0: PIXD5; SSI0: SSITXD" 
+      P406 7 GPT1_GTIOCB - Low - "Peripheral mode" CMOS None "ETHERC1: TXD1; GPT1: GTIOCB; PDC0: PIXD4; SSI0: SSIRXD" 
       P407 44 - - - - Disabled - - "ADC0: ADTRG; CTSU0: TS03; ETHERC0: EXOUT; IIC0: SDA; RTC0: RTCOUT; SCI4: CTS_RTS_SS; SPI1: SSL3; USBFS0: VBUS" 
       P408 43 GPT10_GTIOCB - Low None "Peripheral mode" CMOS None "CTSU0: TS04; ETHERC0: CRS_DV; GPT10: GTIOCB; IRQ0: IRQ07; OPS0: GTOWLO; SCI3: RXD_MISO; SCI3: SCL; USBFS0: ID; USBHS0: ID" 
       P409 42 GPT10_GTIOCA - Low None "Peripheral mode" CMOS None "CTSU0: TS05; ETHERC0: RX_ER; GPT10: GTIOCA; IRQ0: IRQ06; OPS0: GTOWUP; SCI3: SDA; SCI3: TXD_MOSI; USBFS0: EXICEN; USBHS0: EXICEN" 
@@ -148,8 +148,8 @@ Synergy Configuration
       P505 145 - - - - Disabled - - "ADC1: AN18; GPT13: GTIOCB; IRQ0: IRQ14; QSPI0: QIO3; SCI6: RXD_MISO; SCI6: SCL; SDHI1: DAT3" 
       P506 146 GPIO AEN1 Low None "Output mode (Initial Low)" CMOS None "ADC0: AN19; IRQ0: IRQ15; SCI6: SDA; SCI6: TXD_MOSI; SDHI1: CD" 
       P507 147 GPIO AEN2 Low - "Output mode (Initial Low)" CMOS None "ADC1: AN19; SCI5: CTS_RTS_SS; SDHI1: WP" 
-      P511 176 SCI4_RXD_MISO RXD2 - None "Peripheral mode" CMOS None "CAN1: CRX; GPT0: GTIOCB; IIC2: SDA; IRQ0: IRQ15; PDC0: PCKO; SCI4: RXD_MISO; SCI4: SCL" 
-      P512 175 SCI4_TXD_MOSI TXD2 - None "Peripheral mode" CMOS None "CAN1: CTX; GPT0: GTIOCA; IIC2: SCL; IRQ0: IRQ14; PDC0: VSYNC; SCI4: SDA; SCI4: TXD_MOSI" 
+      P511 176 GPT0_GTIOCB - - None "Peripheral mode" CMOS None "CAN1: CRX; GPT0: GTIOCB; IIC2: SDA; IRQ0: IRQ15; PDC0: PCKO; SCI4: RXD_MISO; SCI4: SCL" 
+      P512 175 GPT0_GTIOCA - - None "Peripheral mode" CMOS None "CAN1: CTX; GPT0: GTIOCA; IIC2: SCL; IRQ0: IRQ14; PDC0: VSYNC; SCI4: SDA; SCI4: TXD_MOSI" 
       P513 174 GPIO RS232SEL High - "Output mode (Initial Low)" CMOS "input pull-up" "GLCDC0: LCD_DATA16" 
       P600 122 GPIO HALL_U1 - - "Input mode" - None "BUS0: RD; GLCDC0: LCD_DATA02" 
       P601 121 GPIO HALL_V1 - - "Input mode" - None "BUS0: WR_WR0_DQM0; GLCDC0: LCD_DATA03" 
@@ -173,8 +173,8 @@ Synergy Configuration
       P703 11 - - - - Disabled - - "ETHERC1: RXD1; GPT6: GTIOCB; PDC0: PIXD0" 
       P704 12 - - - - Disabled - - "ETHERC1: RX_ER; PDC0: HSYNC" 
       P705 13 - - - - Disabled - - "ETHERC1: CRS_DV; PDC0: PIXCLK" 
-      P706 14 SCI3_RXD_MISO RXD3 Low None "Peripheral mode" CMOS None "IRQ0: IRQ07; SCI3: RXD_MISO; SCI3: SCL; USBHS0: OVRCURB" 
-      P707 15 SCI3_TXD_MOSI TXD3 Low None "Peripheral mode" CMOS None "IRQ0: IRQ08; SCI3: SDA; SCI3: TXD_MOSI; USBHS0: OVRCURA" 
+      P706 14 - - - - Disabled - - "IRQ0: IRQ07; SCI3: RXD_MISO; SCI3: SCL; USBHS0: OVRCURB" 
+      P707 15 - - - - Disabled - - "IRQ0: IRQ08; SCI3: SDA; SCI3: TXD_MOSI; USBHS0: OVRCURA" 
       P800 133 GPIO CFG0 - - "Input mode" - "input pull-up" "BUS0: D14_DQ14" 
       P801 134 GPIO CFG1 - - "Input mode" - "input pull-up" "BUS0: D15_DQ15; SDHI1: DAT4" 
       P802 135 GPIO CFG2 - - "Input mode" - "input pull-up" "GLCDC0: LCD_DATA02; SDHI1: DAT5" 
@@ -270,11 +270,6 @@ Synergy Configuration
   Module "Incremental Encoder Driver on r_encoder"
     Parameter Checking: Default (BSP)
     
-  Module "Transfer Driver on r_dtc"
-    Parameter Checking: Default (BSP)
-    Software Start: Disabled
-    Linker section to keep DTC vector table: .ssp_dtc_vector_table
-    
   HAL
     Instance "g_elc ELC Driver on r_elc"
       Name [Fixed]: g_elc
@@ -337,9 +332,9 @@ Synergy Configuration
         Commutation Mode: Trapezoidal
         Control Mode: Voltage Control
         PWM Output Mode: Complementary
-        GPT Channel U: 8
-        GPT Channel V: 9
-        GPT Channel W: 10
+        GPT Channel U: 0
+        GPT Channel V: 1
+        GPT Channel W: 2
         PWM Carrier Frequency [KHz]: 60
         Dead Time [us]: 1
         ADC Channel U: 0
@@ -354,7 +349,7 @@ Synergy Configuration
         
       Instance "g_r_encoder_gpt1 Incremental Encoder Driver on r_encoder"
         Name: g_r_encoder_gpt1
-        GPT Channel: 2
+        GPT Channel: 8
         Counts/Revolution: 4000
         Direction Reversed: False
         Pos Capture Trigger: 1
@@ -392,9 +387,9 @@ Synergy Configuration
         Commutation Mode: Sinusoidal
         Control Mode: Voltage Control
         PWM Output Mode: Independent A
-        GPT Channel U: 8
-        GPT Channel V: 9
-        GPT Channel W: 10
+        GPT Channel U: 0
+        GPT Channel V: 1
+        GPT Channel W: 2
         PWM Carrier Frequency [KHz]: 60
         Dead Time [us]: 1
         ADC Channel U: 0
@@ -409,28 +404,11 @@ Synergy Configuration
         
       Instance "g_r_encoder_gpt2 Incremental Encoder Driver on r_encoder"
         Name: g_r_encoder_gpt2
-        GPT Channel: 2
+        GPT Channel: 8
         Counts/Revolution: 4000
         Direction Reversed: False
         Pos Capture Trigger: 1
         
-    Instance "g_transfer0 Transfer Driver on r_dtc Event IOPORT EVENT 2"
-      Name: g_transfer0
-      Mode: Repeat
-      Transfer Size: 4 Bytes
-      Destination Address Mode: Fixed
-      Source Address Mode: Incremented
-      Repeat Area (Unused in Normal Mode): Source
-      Interrupt Frequency: After all transfers have completed
-      Destination Pointer: NULL
-      Source Pointer: NULL
-      Number of Transfers: 0
-      Number of Blocks (Valid only in Block Mode): 0
-      Activation Source (Must enable IRQ): Event IOPORT EVENT 2
-      Auto Enable: True
-      Callback (Only valid with Software start): NULL
-      ELC Software Event Interrupt Priority: Disabled
-      
   Thread "PWM Control Thread"
     Symbol: pwm_ctrl_thread
     Name: PWM Control Thread

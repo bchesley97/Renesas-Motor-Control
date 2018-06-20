@@ -56,10 +56,6 @@ src/motion_thread_entry.o: ../src/motion_thread_entry.c \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_elc.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_encoder_api.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_encoder_gpt.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_motor_api.h \
@@ -181,14 +177,6 @@ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instance
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_encoder_api.h:
 

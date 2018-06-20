@@ -15,7 +15,6 @@ RM := rm -rf
 -include synergy/ssp/src/driver/r_fmi/subdir.mk
 -include synergy/ssp/src/driver/r_encoder_gpt/subdir.mk
 -include synergy/ssp/src/driver/r_elc/subdir.mk
--include synergy/ssp/src/driver/r_dtc/subdir.mk
 -include synergy/ssp/src/driver/r_cgc/hw/subdir.mk
 -include synergy/ssp/src/driver/r_cgc/subdir.mk
 -include synergy/ssp/src/driver/changed_src_files/subdir.mk
@@ -24,7 +23,7 @@ RM := rm -rf
 -include synergy/ssp/src/bsp/cmsis/Device/RENESAS/S7G2/Source/subdir.mk
 -include synergy/board/s7g2_bp/subdir.mk
 -include src/synergy_gen/subdir.mk
--include src/mc/subdir.mk
+-include src/mc/changed_mc/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk

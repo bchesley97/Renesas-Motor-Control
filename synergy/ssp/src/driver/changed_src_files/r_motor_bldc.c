@@ -34,9 +34,7 @@
 #include "../src/driver/r_motor_bldc/hw/hw_motor_bldc_private.h"
 #include "r_gpt.h"
 #include "common_data.h"
-#include "r_dtc.h"
 
-extern const transfer_instance_t g_transfer0;
 //global variables
 mtr_added_ctrl_t mtr_pattern_ctrl;
 mtr_added_ctrl_t *p_mtr_pattern_ctrl = &mtr_pattern_ctrl;
@@ -75,96 +73,6 @@ uint32_t dtc_vect_table[] = { 0x20010000};
 
 const uint32_t * table_address = 0x20000000;
 extern motor_instance_t const *g_motors[16];
-
-
-transfer_info_t chain_1 = {
-
-                           .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-
-                           .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-
-                           .irq = TRANSFER_IRQ_END,
-
-                           .chain_mode = TRANSFER_CHAIN_MODE_EACH,
-
-                           .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-
-                           .size = TRANSFER_SIZE_4_BYTE,
-
-                           .mode = TRANSFER_MODE_REPEAT,
-
-                           .p_src = &pin_ctrl_u[0],
-
-                           .p_dest = (uint32_t*)0x40078830,
-
-                           .num_blocks = 0, //for crab
-
-                           .length = 6
-
-                        };
-
-
-
- transfer_info_t chain_2 = {
-
-                           .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-
-                           .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-
-                           .irq = TRANSFER_IRQ_END,
-
-                           .chain_mode = TRANSFER_CHAIN_MODE_EACH,
-
-                           .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-
-                           .size = TRANSFER_SIZE_4_BYTE,
-
-                           .mode = TRANSFER_MODE_REPEAT,
-
-                           .p_src = &pin_ctrl_v[0],
-
-                           .p_dest = (uint32_t*)0x40078930,
-
-                           .num_blocks = 0, //for crab
-
-                           .length = 6
-
-                        };
-
-
-
-
-
- transfer_info_t chain_3 = {
-
-                           .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
-
-                           .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
-
-                           .irq = TRANSFER_IRQ_END,
-
-                           .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
-
-                           .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
-
-                           .size = TRANSFER_SIZE_4_BYTE,
-
-                           .mode = TRANSFER_MODE_REPEAT,
-
-                           .p_src = &pin_ctrl_w[0],
-
-                           .p_dest = (uint32_t*)0x40078A30,
-
-                           .num_blocks = 0, //for crab
-
-                           .length = 6
-
-                        };
-
-
-
-
-
 
 void pwm_counter_overflow (void);
 
@@ -259,13 +167,10 @@ void change_pwm_duty(uint32_t duty_cycle_percent, motor_ctrl_t * const p_ctrl)
 void set_ol_speed_rpms(float rpms)
 {
     //set the speed of the motor in open loop control via parameter in terms of rpms
-    //running at 60 KHz, interrupt currently firing at this rate. When interrupt skipping is implemented this will change to 20KHz
-
-    uint32_t interrupt_rate_hz = 60000;
+    uint32_t interrupt_rate_hz = 20000;
     float cycles_per_sec = (rpms/(10.0f));
     uint32_t count = (uint32_t)((float)(interrupt_rate_hz)/cycles_per_sec);
     p_mtr_pattern_ctrl->vel_accel.velocity = count;
-
 }
 
 //each timer for u,v, and w phases are passed in. center aligned and half cycle reload hard coded to true (not sure why)
@@ -278,11 +183,6 @@ static void motor_bldc_init(R_GPTA0_Type *p_gpt, uint16_t ch, uint32_t period, b
 
     p_gpt->GTBER_b.ADTTA = 1; //transfer at crest for triangle waves, otherwise transfer over/under flow depending on counting direction
  //   p_gpt->GTBER_b.ADTTB = 1; //transfer at crest
-
-    //GTPR is general PWM timer cycle setting reg. (PERIOD REGISTER)
-    //GTPBR is buffer register
-
-
 
     if (center_aligned) //center aligned?
     {                                                                                       ///< Triangle wave PWM mode 1 (16-bit transfer at crest) (single or double buffer)
@@ -614,10 +514,6 @@ uint32_t dead_time_ticks=0;
 static void gpt_set_pins_comp(GPT_BASE_PTR p_gpt_base, float *dead_time_ns) //this function doesnt seem to take into account the complementary PWM setting. changing to account for this (probably dont need for actual implementation since board creates its own complementary pwm signal)
 {
 
-
-    /*** NOTE: For dead time operation, only GPT8-13 may be used as the dead time control register is read only in GPT0-7 (fine detail in the S7G2 manual) ***/
-
-
     /*** Set automatic dead time ***/
 
     //transform dead time value in us to a period value in terms of timer ticks
@@ -638,9 +534,7 @@ static void gpt_set_pins_comp(GPT_BASE_PTR p_gpt_base, float *dead_time_ns) //th
     p_gpt_base->GTDVU = dead_time_ticks;
     p_gpt_base->GTDVD = dead_time_ticks;
 
-    //NOTE: For some reason to set the proper bit in this register, you must write 0xFFFFFFFF to the entire register. Not sure why.
-    p_gpt_base->GTDTCR = 0xffffffff; //use GTDVU and GTDVD to set compare match value for negative phase waveform with auto dead time in GTCCRB
-
+    p_gpt_base->GTDTCR = 0x00000101; //use GTDVU and GTDVD to set compare match value for negative phase waveform with auto dead time in GTCCRB
 
     uint32_t pins = GPT_GTIOCA; //set channel A
     //p_gpt_base_pos is channel that isnt inverted, the comp parameter is the complemented PWM timer
@@ -686,15 +580,10 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
 
 
     /*** Configure the DTC ***/
-
-
     //need to configure vector table in sram area
 
     uint32_t address = 0x20040000;
-
-
     volatile uint32_t * dtc_transfer_info_ptr = (uint32_t*)0x20040000;
-
 
     uint32_t  sar_u = (uint32_t)&pin_ctrl_u[0];
     uint32_t  sar_v = (uint32_t)&pin_ctrl_v[0];
@@ -713,7 +602,6 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
    *dtc_vector_table_ptr = 0;
    dtc_vector_table_ptr = dtc_vector_table_ptr+3;
    *dtc_vector_table_ptr = 0x20040000;
-
 
     R_DTC->DTCST = 0;
 
@@ -746,9 +634,6 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
     *dtc_transfer_info_ptr = (uint32_t)(((6 << 8) | 6) << 16);
     dtc_transfer_info_ptr++; //increment pointer
 
-
-
-
     /* Configuration values for second transfer are : (same as first)
     *  MRA: increment source address, word transfer, repeat transfer mode
     *  MRB: fixed destination address, transfer source as repeat area, generate interrupt when specified data transfer complete, continuous chain transfer, enable chain transfer
@@ -766,9 +651,6 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
     dtc_transfer_info_ptr++; //increment pointer
     *dtc_transfer_info_ptr = (uint32_t)(((6 << 8) | 6) << 16);
     dtc_transfer_info_ptr++; //increment pointer
-
-
-
 
 
     /*transfer information for third timer (w timer, third and last transfer) all settings are the same except for the mrb.chne = 0 and mrb.disel = 0*/
@@ -789,11 +671,6 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
     dtc_transfer_info_ptr++; //increment pointer
     *dtc_transfer_info_ptr = (uint32_t)(((6 << 8) | 6) << 16);
 
-
-    //reset the vector table pointer to first transfer vector location
-    //dtc_transfer_info_ptr = (uint32_t*)address;
-
-
     //3. set transfer info start addresses in DTC vector table
     R_DTC->DTCVBR = (0x200FE000); //lower ten bits should be zero. arbitrary position
 
@@ -804,14 +681,14 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
 
     //5. set ICU.IELSRn.DTCE bit to 1. set ICU.IELSRn.IELS as the interrupt sources that trigger DTC. the interrupts must be enabled in NVIC
 
-    R_ICU->IELSRn_b[1].IELS = 0x95; //[1] is the number of events currently in the ICU. 0x95 is the IOPORT2_event trigger
+    R_ICU->IELSRn_b[1].IELS = 0x95; //[1] is the number of events currently in the ICU. 0x95 is the IOPORT2_event trigger. value at [0] is PWM interrupt
     R_ICU->IELSRn_b[1].DTCE = 1;
 
     //6. set enable bit for activation source interrupts to 1. when source interrupt is generated, DTC is activated
-    //not using interrupts so nothing to do here.
+    ///not using interrupts so nothing to do here.
 
     //7. set the start module bit to 1 (DTCST.DTCST to 1)
-    R_DTC->DTCST = 1; //this bit is set in the pwm control thread when control switches from open loop to closed loop
+    ///this bit is set in the pwm control thread when control switches from open loop to closed loop
 
 }
 
@@ -826,7 +703,6 @@ static inline void enable_bemf_dac()
     R_DAC->DADRn[0] = 0x00EC; //DADR[0] is DADR0. value outputted from dac (0.19V)
     R_DAC->DADPR_b.DPSEL = 0; //right justified 12 bit value
     R_DAC->DACR = 0b01000000; //enable D/A conversion of Channel 0, analog output is also enables (wont need since being used in internal comparator)
-
 
 }
 
@@ -853,8 +729,7 @@ static inline void enable_bemf_comps()
     //configure output activation level
     R_COMP0->CMPMON_b.CMPMON = 1; //comparator output is active high (also configure for rising edge interrupt)
 
-   //can modify the CPIOC register to enable the output pin of the comparator output, dont need since just need the interrupt firing
-
+    //can modify the CPIOC register to enable the output pin of the comparator output, dont need since just need the interrupt firing
 
     //writing to control register
     R_COMP0->CMPCTL_b.COE = 1; //enable comparator output
@@ -953,33 +828,26 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
         //setup interrupt for only one timer out of the timers used for trapezoidal commutation
         if (!irq_handler_set)
         {
-
-            //enable interrupt skipping. skip two interrupts before firing. allows an interrupt rate of 20KHz while the PWM carrier frequency is 60KHz
-            //TODO: change timers to GPTE's or GPTEH's since interrupt skipping is only available with these timers
-
-
-//            p_ctrl->p_gpt_u->GTITC_b.ITLA = 1; //link with interrupt skipping with GTCCRA overflow (compare match) interrupt
-//            p_ctrl->p_gpt_u->GTITC_b.IVTC = 0b10; //count and skip trough
-
-
-
             /* Setup only one PWM Carrier Interrupt */
             irq_handler_set = true;
 
-//            /* Setup PWM Interrupt */
+             /* Setup PWM Interrupt */
             HW_GPT_InterruptEnable(p_ctrl->p_gpt_u, GPT_INT_TYPE_OVERFLOW);
+
+            /* enable interrupt skipping (count crests, skip 2 interrupts before firing) */
+            p_ctrl->p_gpt_u->GTITC = 0x00000241;
 
             ssp_vector_info_t * p_vector_info;
             R_SSP_VectorInfoGet(p_ctrl->irq, &p_vector_info);
             NVIC_SetPriority(p_ctrl->irq, 1);
-           // *(p_vector_info->pp_ctrl) = p_ctrl;
+            *(p_vector_info->pp_ctrl) = p_ctrl;
 
             R_BSP_IrqStatusClear(p_ctrl->irq);
             NVIC_ClearPendingIRQ(p_ctrl->irq);
             NVIC_EnableIRQ(p_ctrl->irq);
 
+            /* enable the DTC linked with the ELC for closed loop control */
            enable_dtc_elc(p_ctrl); //enable dtc only for one motor
-
 
         }
 

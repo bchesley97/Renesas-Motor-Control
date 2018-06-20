@@ -59,11 +59,7 @@ synergy/ssp/src/driver/changed_src_files/r_motor_bldc.o: \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_ioport_cfg.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_elc.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api\api_changed/r_motor_api_changed.h:
 
@@ -184,11 +180,3 @@ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instance
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h:

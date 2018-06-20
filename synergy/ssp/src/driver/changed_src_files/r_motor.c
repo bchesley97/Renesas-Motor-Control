@@ -36,9 +36,6 @@ bool irq_handler_set = false;
 int32_t     g_motor_count = 0;
 motor_instance_t const *g_motors[16];
 int16_t     g_pwm_timer_count;
-uint32_t pwm_cycle_state_thresh = 25; //arbitrary value (for now) controlling how many pwm cycles till the trap pattern is changed
-uint32_t pwm_inner_loop_cntr = 0;
-int32_t pwm_velocity = 0;
 
 uint8_t pattern_index = 1;
 
@@ -49,8 +46,13 @@ extern phase_pin_ctrl_t pins_ctrl[6];
 
 /* Interrupt handler for high speed motor control loops */
 void pwm_counter_overflow (void);
+
+
 void pwm_counter_overflow (void)
 {
+
+    //this interrupt is running at 20KHz
+
     /* Save context if RTOS is used */
     SF_CONTEXT_SAVE
 
@@ -58,6 +60,7 @@ void pwm_counter_overflow (void)
     IRQn_Type irq = R_SSP_CurrentIrqGet();
     R_SSP_VectorInfoGet(irq, &p_vector_info);
     motor_instance_t *trap_motor = g_motors[1]; //hardcode the motor that has a trapezoidal commutation scheme
+
 
 //    if (sf_callback != NULL)
 //    {
@@ -95,43 +98,13 @@ void pwm_counter_overflow (void)
 
         /*** Update timer pins output ***/
         //update U timer
-//        trap_motor->p_ctrl->p_gpt_u->GTUDDTYC = pins_u;   //changing the OADTY/OBDTY bits allows for synchronous changing of the timer's pin outputs at a timer underflow
-//
-//        //update V timer
-//        trap_motor->p_ctrl->p_gpt_v->GTUDDTYC = pins_v;
-//
-//        //update W timer
-//        trap_motor->p_ctrl->p_gpt_w->GTUDDTYC = pins_w;
+        trap_motor->p_ctrl->p_gpt_u->GTUDDTYC = pins_u;   //changing the OADTY/OBDTY bits allows for synchronous changing of the timer's pin outputs at a timer underflow
 
-       // R_ICU->IELSRn_b[5].IR = 0;
+        //update V timer
+        trap_motor->p_ctrl->p_gpt_v->GTUDDTYC = pins_v;
 
-        uint32_t * ptr = (uint32_t*)0x20040000;
-        uint32_t read_data = *ptr;
-        ptr++;
-        read_data= *ptr;
-        ptr++;
-        read_data = *ptr;
-        ptr++;
-        read_data = *ptr;
-        ptr++;
-
-        read_data = *ptr;
-        ptr++;
-        read_data= *ptr;
-        ptr++;
-        read_data = *ptr;
-        ptr++;
-        read_data = *ptr;
-        ptr++;
-
-        read_data = *ptr;
-        ptr++;
-        read_data= *ptr;
-        ptr++;
-        read_data = *ptr;
-        ptr++;
-        read_data = *ptr;
-        ptr++;
+        //update W timer
+        trap_motor->p_ctrl->p_gpt_w->GTUDDTYC = pins_w;
 
     }
 

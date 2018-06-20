@@ -95,13 +95,43 @@ void pwm_counter_overflow (void)
 
         /*** Update timer pins output ***/
         //update U timer
-        trap_motor->p_ctrl->p_gpt_u->GTUDDTYC = pins_u;   //changing the OADTY/OBDTY bits allows for synchronous changing of the timer's pin outputs at a timer underflow
+//        trap_motor->p_ctrl->p_gpt_u->GTUDDTYC = pins_u;   //changing the OADTY/OBDTY bits allows for synchronous changing of the timer's pin outputs at a timer underflow
+//
+//        //update V timer
+//        trap_motor->p_ctrl->p_gpt_v->GTUDDTYC = pins_v;
+//
+//        //update W timer
+//        trap_motor->p_ctrl->p_gpt_w->GTUDDTYC = pins_w;
 
-        //update V timer
-        trap_motor->p_ctrl->p_gpt_v->GTUDDTYC = pins_v;
+       // R_ICU->IELSRn_b[5].IR = 0;
 
-        //update W timer
-        trap_motor->p_ctrl->p_gpt_w->GTUDDTYC = pins_w;
+        uint32_t * ptr = (uint32_t*)0x20040000;
+        uint32_t read_data = *ptr;
+        ptr++;
+        read_data= *ptr;
+        ptr++;
+        read_data = *ptr;
+        ptr++;
+        read_data = *ptr;
+        ptr++;
+
+        read_data = *ptr;
+        ptr++;
+        read_data= *ptr;
+        ptr++;
+        read_data = *ptr;
+        ptr++;
+        read_data = *ptr;
+        ptr++;
+
+        read_data = *ptr;
+        ptr++;
+        read_data= *ptr;
+        ptr++;
+        read_data = *ptr;
+        ptr++;
+        read_data = *ptr;
+        ptr++;
 
     }
 

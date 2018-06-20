@@ -270,11 +270,10 @@ Synergy Configuration
   Module "Incremental Encoder Driver on r_encoder"
     Parameter Checking: Default (BSP)
     
-  Module "External IRQ Framework on sf_external_irq"
+  Module "Transfer Driver on r_dtc"
     Parameter Checking: Default (BSP)
-    
-  Module "External IRQ Driver on r_icu"
-    Parameter Checking: Default (BSP)
+    Software Start: Disabled
+    Linker section to keep DTC vector table: .ssp_dtc_vector_table
     
   HAL
     Instance "g_elc ELC Driver on r_elc"
@@ -415,6 +414,23 @@ Synergy Configuration
         Direction Reversed: False
         Pos Capture Trigger: 1
         
+    Instance "g_transfer0 Transfer Driver on r_dtc Event IOPORT EVENT 2"
+      Name: g_transfer0
+      Mode: Repeat
+      Transfer Size: 4 Bytes
+      Destination Address Mode: Fixed
+      Source Address Mode: Incremented
+      Repeat Area (Unused in Normal Mode): Source
+      Interrupt Frequency: After all transfers have completed
+      Destination Pointer: NULL
+      Source Pointer: NULL
+      Number of Transfers: 0
+      Number of Blocks (Valid only in Block Mode): 0
+      Activation Source (Must enable IRQ): Event IOPORT EVENT 2
+      Auto Enable: True
+      Callback (Only valid with Software start): NULL
+      ELC Software Event Interrupt Priority: Disabled
+      
   Thread "PWM Control Thread"
     Symbol: pwm_ctrl_thread
     Name: PWM Control Thread
@@ -423,20 +439,6 @@ Synergy Configuration
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
-    Instance "g_sf_external_irq0 External IRQ Framework on sf_external_irq"
-      Name: g_sf_external_irq0
-      Event: Semaphore Put
-      
-      Instance "g_external_irq0 External IRQ Driver on r_icu"
-        Name: g_external_irq0
-        Channel: 7
-        Trigger: Rising
-        Digital Filtering: Enabled
-        Digital Filtering Sample Clock (Only valid when Digital Filtering is Enabled): PCLK / 64
-        Interrupt enabled after initialization: True
-        Callback: external_irq_callback
-        Interrupt Priority: Priority 8 (CM4: valid, CM0+: invalid)
-        
     Object "g_event_change_pattern Event Flags"
       Name: New Event Flags
       Symbol: g_event_change_pattern

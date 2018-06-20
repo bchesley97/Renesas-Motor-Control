@@ -9,6 +9,32 @@ static void motion_thread_func(ULONG thread_input);
 #pragma data_alignment = BSP_STACK_ALIGNMENT
 #endif
 static uint8_t motion_thread_stack[1024] BSP_PLACE_IN_SECTION(".stack.motion_thread") BSP_ALIGN_VARIABLE(BSP_STACK_ALIGNMENT);
+#if (BSP_IRQ_DISABLED) != BSP_IRQ_DISABLED
+#if !defined(SSP_SUPPRESS_ISR_g_transfer0) && !defined(SSP_SUPPRESS_ISR_DTCELC_EVENT_IOPORT_EVENT_2)
+#define DTC_ACTIVATION_SRC_ELC_EVENT_IOPORT_EVENT_2
+#if defined(DTC_ACTIVATION_SRC_ELC_EVENT_ELC_SOFTWARE_EVENT_0) && !defined(DTC_VECTOR_DEFINED_SOFTWARE_EVENT_0)
+SSP_VECTOR_DEFINE(elc_software_event_isr, ELC, SOFTWARE_EVENT_0);
+#define DTC_VECTOR_DEFINED_SOFTWARE_EVENT_0
+#endif
+#if defined(DTC_ACTIVATION_SRC_ELC_EVENT_ELC_SOFTWARE_EVENT_1) && !defined(DTC_VECTOR_DEFINED_SOFTWARE_EVENT_1)
+SSP_VECTOR_DEFINE(elc_software_event_isr, ELC, SOFTWARE_EVENT_1);
+#define DTC_VECTOR_DEFINED_SOFTWARE_EVENT_1
+#endif
+#endif
+#endif
+
+dtc_instance_ctrl_t g_transfer0_ctrl;
+transfer_info_t g_transfer0_info =
+{ .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED, .repeat_area = TRANSFER_REPEAT_AREA_SOURCE, .irq = TRANSFER_IRQ_END,
+  .chain_mode = TRANSFER_CHAIN_MODE_DISABLED, .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED, .size =
+          TRANSFER_SIZE_4_BYTE,
+  .mode = TRANSFER_MODE_REPEAT, .p_dest = (void *) NULL, .p_src = (void const *) NULL, .num_blocks = 0, .length = 0, };
+const transfer_cfg_t g_transfer0_cfg =
+{ .p_info = &g_transfer0_info, .activation_source = ELC_EVENT_IOPORT_EVENT_2, .auto_enable = true, .p_callback = NULL,
+  .p_context = &g_transfer0, .irq_ipl = (BSP_IRQ_DISABLED) };
+/* Instance structure to use this module. */
+const transfer_instance_t g_transfer0 =
+{ .p_ctrl = &g_transfer0_ctrl, .p_cfg = &g_transfer0_cfg, .p_api = &g_transfer_on_dtc };
 /************* ENCODER on GPT ****************/
 encoder_ctrl_t g_r_encoder_gpt2_ctrl;
 encoder_cfg_t g_r_encoder_gpt2_cfg =

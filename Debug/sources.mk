@@ -27,11 +27,10 @@ synergy/ssp/src/bsp/mcu/s7g2 \
 synergy/ssp/src/driver/changed_src_files \
 synergy/ssp/src/driver/r_cgc/hw \
 synergy/ssp/src/driver/r_cgc \
+synergy/ssp/src/driver/r_dtc \
 synergy/ssp/src/driver/r_elc \
 synergy/ssp/src/driver/r_encoder_gpt \
 synergy/ssp/src/driver/r_fmi \
-synergy/ssp/src/driver/r_icu \
 synergy/ssp/src/driver/r_ioport \
-synergy/ssp/src/framework/sf_external_irq \
 synergy/ssp/src/framework/sf_motion \
 

@@ -9,25 +9,6 @@ static void pwm_ctrl_thread_func(ULONG thread_input);
 #pragma data_alignment = BSP_STACK_ALIGNMENT
 #endif
 static uint8_t pwm_ctrl_thread_stack[1024] BSP_PLACE_IN_SECTION(".stack.pwm_ctrl_thread") BSP_ALIGN_VARIABLE(BSP_STACK_ALIGNMENT);
-#if (8) != BSP_IRQ_DISABLED
-#if !defined(SSP_SUPPRESS_ISR_g_external_irq0) && !defined(SSP_SUPPRESS_ISR_ICU7)
-SSP_VECTOR_DEFINE( icu_irq_isr, ICU, IRQ7);
-#endif
-#endif
-static icu_instance_ctrl_t g_external_irq0_ctrl;
-static const external_irq_cfg_t g_external_irq0_cfg =
-{ .channel = 7, .trigger = EXTERNAL_IRQ_TRIG_RISING, .filter_enable = true, .pclk_div = EXTERNAL_IRQ_PCLK_DIV_BY_64,
-  .autostart = true, .p_callback = external_irq_callback, .p_context = &g_external_irq0, .p_extend = NULL, .irq_ipl =
-          (8), };
-/* Instance structure to use this module. */
-const external_irq_instance_t g_external_irq0 =
-{ .p_ctrl = &g_external_irq0_ctrl, .p_cfg = &g_external_irq0_cfg, .p_api = &g_external_irq_on_icu };
-sf_external_irq_instance_ctrl_t g_sf_external_irq0_ctrl;
-const sf_external_irq_cfg_t g_sf_external_irq0_cfg =
-{ .event = SF_EXTERNAL_IRQ_EVENT_SEMAPHORE_PUT, .p_lower_lvl_irq = &g_external_irq0, };
-/* Instance structure to use this module. */
-const sf_external_irq_instance_t g_sf_external_irq0 =
-{ .p_ctrl = &g_sf_external_irq0_ctrl, .p_cfg = &g_sf_external_irq0_cfg, .p_api = &g_sf_external_irq_on_sf_external_irq };
 TX_EVENT_FLAGS_GROUP g_event_change_pattern;
 extern bool g_ssp_common_initialized;
 extern uint32_t g_ssp_common_thread_count;

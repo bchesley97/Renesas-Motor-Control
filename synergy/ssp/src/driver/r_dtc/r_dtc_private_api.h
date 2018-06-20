@@ -17,8 +17,8 @@
  * included in this file may be subject to different terms.
  **********************************************************************************************************************/
 
-#ifndef SF_EXTERNAL_IRQ_PRIVATE_API_H
-#define SF_EXTERNAL_IRQ_PRIVATE_API_H
+#ifndef R_DTC_R_DTC_PRIVATE_API_H_
+#define R_DTC_R_DTC_PRIVATE_API_H_
 
 /** Common macro for SSP header files. There is also a corresponding SSP_FOOTER macro at the end of this file. */
 SSP_HEADER
@@ -26,15 +26,29 @@ SSP_HEADER
 /***********************************************************************************************************************
  * Private Instance API Functions. DO NOT USE! Use functions through Interface API structure instead.
  **********************************************************************************************************************/
-ssp_err_t SF_EXTERNAL_IRQ_Open (sf_external_irq_ctrl_t * const p_ctrl, sf_external_irq_cfg_t const * const p_cfg);
-
-ssp_err_t SF_EXTERNAL_IRQ_Wait (sf_external_irq_ctrl_t * const p_ctrl, ULONG const timeout);
-
-ssp_err_t SF_EXTERNAL_IRQ_VersionGet (ssp_version_t * const p_version);
-
-ssp_err_t SF_EXTERNAL_IRQ_Close (sf_external_irq_ctrl_t * const p_ctrl);
+ssp_err_t R_DTC_Open (transfer_ctrl_t        * const p_ctrl,
+                      transfer_cfg_t const * const   p_cfg);
+ssp_err_t R_DTC_Reset (transfer_ctrl_t        * const    p_ctrl,
+                       void const * volatile             p_src,
+                       void                   * volatile p_dest,
+                       uint16_t const                    num_transfers);
+ssp_err_t R_DTC_Start     (transfer_ctrl_t        * const p_ctrl,
+                           transfer_start_mode_t          mode);
+ssp_err_t R_DTC_Stop      (transfer_ctrl_t        * const p_ctrl);
+ssp_err_t R_DTC_Enable    (transfer_ctrl_t        * const p_ctrl);
+ssp_err_t R_DTC_Disable   (transfer_ctrl_t        * const p_ctrl);
+ssp_err_t R_DTC_InfoGet   (transfer_ctrl_t        * const p_ctrl,
+                           transfer_properties_t  * const p_info);
+ssp_err_t R_DTC_Close (transfer_ctrl_t        * const p_ctrl);
+ssp_err_t R_DTC_VersionGet (ssp_version_t     * const p_version);
+ssp_err_t R_DTC_BlockReset (transfer_ctrl_t   * const p_ctrl,
+                            void     const * volatile p_src,
+                            void           * volatile p_dest,
+                            uint16_t            const length,
+                            transfer_size_t           size,
+                            uint16_t            const num_transfers);
 
 /** Common macro for SSP header files. There is also a corresponding SSP_HEADER macro at the top of this file. */
 SSP_FOOTER
 
-#endif /* SF_EXTERNAL_IRQ_PRIVATE_API_H */
+#endif /* R_DTC_R_DTC_PRIVATE_API_H_ */

@@ -1,6 +1,6 @@
-synergy/ssp/src/driver/r_icu/r_icu.o: \
- ../synergy/ssp/src/driver/r_icu/r_icu.c \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_icu.h \
+synergy/ssp/src/driver/r_dtc/r_dtc.o: \
+ ../synergy/ssp/src/driver/r_dtc/r_dtc.c \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\bsp/bsp_api.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\inc\ssp_common_api.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\inc\ssp_version.h \
@@ -42,13 +42,17 @@ synergy/ssp/src/driver/r_icu/r_icu.o: \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\all\bsp_feature.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\all\bsp_mcu_api.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\all\bsp_error_checking.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_external_irq_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_icu_cfg.h \
- ../synergy/ssp/src/driver/r_icu/hw/hw_icu_private.h \
- ../synergy/ssp/src/driver/r_icu/hw/common/hw_icu_common.h \
- ../synergy/ssp/src/driver/r_icu/r_icu_private_api.h
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h \
+ ../synergy/ssp/src/driver/r_dtc/hw/hw_dtc_private.h \
+ ../synergy/ssp/src/driver/r_dtc/hw/common/hw_dtc_common.h \
+ ../synergy/ssp/src/driver/r_dtc/r_dtc_private_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_elc.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h
 
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_icu.h:
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\bsp/bsp_api.h:
 
@@ -132,12 +136,20 @@ c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\all\bsp
 
 c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\all\bsp_error_checking.h:
 
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_external_irq_api.h:
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h:
 
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_icu_cfg.h:
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
 
-../synergy/ssp/src/driver/r_icu/hw/hw_icu_private.h:
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h:
 
-../synergy/ssp/src/driver/r_icu/hw/common/hw_icu_common.h:
+../synergy/ssp/src/driver/r_dtc/hw/hw_dtc_private.h:
 
-../synergy/ssp/src/driver/r_icu/r_icu_private_api.h:
+../synergy/ssp/src/driver/r_dtc/hw/common/hw_dtc_common.h:
+
+../synergy/ssp/src/driver/r_dtc/r_dtc_private_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_elc.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:

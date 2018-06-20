@@ -7,11 +7,23 @@ void motion_thread_entry(void);
 static int32_t led_run_toggle = 0;
 static int32_t led_run_cnt = 0;
 
+
+
+
+
+
+
+
+
+
 /* Motion Thread entry function */
 void motion_thread_entry(void)
 {
     /* Get LED information for this board */
     R_BSP_LedsGet(&Leds);
+
+
+
 
     /* If this board has no LEDs then trap here */
     if (!Leds.led_count)

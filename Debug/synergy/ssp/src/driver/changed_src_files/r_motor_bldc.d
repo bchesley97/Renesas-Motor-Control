@@ -51,13 +51,6 @@ synergy/ssp/src/driver/changed_src_files/r_motor_bldc.o: \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\driver\r_gpt\hw\common/hw_gpt_common.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\driver\r_motor_bldc\r_motor_bldc_private_api.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\driver\r_motor_bldc\hw\hw_motor_bldc_private.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\api/sf_external_irq_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_external_irq_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\el/tx_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\el/tx_port.h \
- c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\inc\framework\el\cm4_gcc\tx_port.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\framework\el/tx_user.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\el/tx_cmsis.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\src\synergy_gen/common_data.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_cgc.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_cgc_cfg.h \
@@ -66,7 +59,11 @@ synergy/ssp/src/driver/changed_src_files/r_motor_bldc.o: \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_ioport_cfg.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_elc.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api\api_changed/r_motor_api_changed.h:
 
@@ -170,20 +167,6 @@ c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\driver\r_motor_
 
 c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\driver\r_motor_bldc\hw\hw_motor_bldc_private.h:
 
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\api/sf_external_irq_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_external_irq_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\el/tx_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\el/tx_port.h:
-
-c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\inc\framework\el\cm4_gcc\tx_port.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\framework\el/tx_user.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\el/tx_cmsis.h:
-
 C:\Users\britton.chesley\e2_studio\workspace\S7G\src\synergy_gen/common_data.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_cgc.h:
@@ -201,3 +184,11 @@ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instance
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h:

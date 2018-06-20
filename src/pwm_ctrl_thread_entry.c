@@ -5,8 +5,6 @@ extern mtr_added_ctrl_t *p_mtr_pattern_ctrl;
 
 bool pwm_pattern_update = 0; //global variable. this variable is used in the ISR to determine when to update the pwm pattern (change phase states)
 
-void external_irq_callback(external_irq_callback_args_t * p_args);
-
 extern phase_pin_ctrl_t pins_ctrl[];
 extern phase_pin_ctrl_t *p_pins_ctrl;
 
@@ -52,11 +50,3 @@ void pwm_ctrl_thread_entry(void)
     }
 }
 
-void external_irq_callback(external_irq_callback_args_t * p_args)
-{
-
-
-    int x = 0;
-
-
-}

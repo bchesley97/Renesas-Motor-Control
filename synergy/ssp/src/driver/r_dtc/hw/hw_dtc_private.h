@@ -18,18 +18,17 @@
  **********************************************************************************************************************/
 
 /**********************************************************************************************************************
- * File Name    : hw_icu_private.h
- * Description  : Lower level driver interface to ICU.  Register setting and reading is done here.
+ * File Name    : hw_dtc_private.h
+ * Description  : DTC register access prototypes.
  **********************************************************************************************************************/
 
-#ifndef HW_ICU_PRIVATE_H
-#define HW_ICU_PRIVATE_H
+#ifndef HW_DTC_PRIVATE_H
+#define HW_DTC_PRIVATE_H
 
 /**********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
-#include <stdbool.h>
-#include "r_icu.h"
+#include "r_dtc.h"
 
 /** Common macro for SSP header files. There is also a corresponding SSP_FOOTER macro at the end of this file. */
 SSP_HEADER
@@ -41,25 +40,33 @@ SSP_HEADER
 /**********************************************************************************************************************
  * Typedef definitions
  **********************************************************************************************************************/
+typedef enum e_dtc_read_skip
+{
+    DTC_READ_SKIP_DISABLED = 0,
+    DTC_READ_SKIP_ENABLED  = 1
+} dtc_read_skip_t;
+
+typedef enum e_dtc_startstop
+{
+    DTC_STOP  = 0,
+    DTC_START = 1
+} dtc_startstop_t;
 
 /**********************************************************************************************************************
  * Function Prototypes
  **********************************************************************************************************************/
-__STATIC_INLINE void      HW_ICU_DivisorSet (R_ICU_Type * p_icu_reg, uint8_t ch, external_irq_pclk_div_t pclk_divisor);
-
-__STATIC_INLINE void      HW_ICU_FilterEnable (R_ICU_Type * p_icu_reg, uint8_t ch);
-
-__STATIC_INLINE void      HW_ICU_FilterDisable (R_ICU_Type * p_icu_reg, uint8_t ch);
-
-__STATIC_INLINE void      HW_ICU_TriggerSet (R_ICU_Type * p_icu_reg, uint8_t ch, external_irq_trigger_t trigger);
 
 /**********************************************************************************************************************
  * Includes
  **********************************************************************************************************************/
 /* Select implementation based on BSP here */
-#include "common/hw_icu_common.h"
+#include "common/hw_dtc_common.h"
 
 /** Common macro for SSP header files. There is also a corresponding SSP_HEADER macro at the top of this file. */
 SSP_FOOTER
 
-#endif /* HW_ICU_PRIVATE_H */
+#endif /* HW_DTC_PRIVATE_H */
+
+/*******************************************************************************************************************//**
+ * @} (end addtogroup DTC)
+ **********************************************************************************************************************/

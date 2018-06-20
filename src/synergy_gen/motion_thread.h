@@ -9,6 +9,8 @@ extern "C" void motion_thread_entry(void);
 #else 
 extern void motion_thread_entry(void);
 #endif
+#include "r_dtc.h"
+#include "r_transfer_api.h"
 #include "r_encoder_api.h"
 #include "r_encoder_gpt.h"
 #include "r_motor_api.h"
@@ -17,6 +19,11 @@ extern void motion_thread_entry(void);
 #ifdef __cplusplus
 extern "C"
 {
+#endif
+/* Transfer on DTC Instance. */
+extern const transfer_instance_t g_transfer0;
+#ifndef NULL
+void NULL(transfer_callback_args_t *p_args);
 #endif
 /** Encoder on GPT instance */
 extern encoder_instance_t g_r_encoder_gpt2;

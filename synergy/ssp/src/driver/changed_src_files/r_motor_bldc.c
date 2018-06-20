@@ -33,9 +33,10 @@
 #include "../src/driver/r_motor_bldc/r_motor_bldc_private_api.h"
 #include "../src/driver/r_motor_bldc/hw/hw_motor_bldc_private.h"
 #include "r_gpt.h"
-#include "sf_external_irq_api.h";
-
 #include "common_data.h"
+#include "r_dtc.h"
+
+extern const transfer_instance_t g_transfer0;
 //global variables
 mtr_added_ctrl_t mtr_pattern_ctrl;
 mtr_added_ctrl_t *p_mtr_pattern_ctrl = &mtr_pattern_ctrl;
@@ -73,10 +74,98 @@ uint32_t pin_ctrl_w[] = {0x00000001, 0x02020001, 0x03020001, 0x03020001, 0x02020
 uint32_t dtc_vect_table[] = { 0x20010000};
 
 const uint32_t * table_address = 0x20000000;
-
-
-extern sf_external_irq_instance_t  g_sf_external_irq0;
 extern motor_instance_t const *g_motors[16];
+
+
+transfer_info_t chain_1 = {
+
+                           .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+
+                           .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+
+                           .irq = TRANSFER_IRQ_END,
+
+                           .chain_mode = TRANSFER_CHAIN_MODE_EACH,
+
+                           .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+
+                           .size = TRANSFER_SIZE_4_BYTE,
+
+                           .mode = TRANSFER_MODE_REPEAT,
+
+                           .p_src = &pin_ctrl_u[0],
+
+                           .p_dest = (uint32_t*)0x40078830,
+
+                           .num_blocks = 0, //for crab
+
+                           .length = 6
+
+                        };
+
+
+
+ transfer_info_t chain_2 = {
+
+                           .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+
+                           .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+
+                           .irq = TRANSFER_IRQ_END,
+
+                           .chain_mode = TRANSFER_CHAIN_MODE_EACH,
+
+                           .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+
+                           .size = TRANSFER_SIZE_4_BYTE,
+
+                           .mode = TRANSFER_MODE_REPEAT,
+
+                           .p_src = &pin_ctrl_v[0],
+
+                           .p_dest = (uint32_t*)0x40078930,
+
+                           .num_blocks = 0, //for crab
+
+                           .length = 6
+
+                        };
+
+
+
+
+
+ transfer_info_t chain_3 = {
+
+                           .dest_addr_mode = TRANSFER_ADDR_MODE_FIXED,
+
+                           .repeat_area = TRANSFER_REPEAT_AREA_SOURCE,
+
+                           .irq = TRANSFER_IRQ_END,
+
+                           .chain_mode = TRANSFER_CHAIN_MODE_DISABLED,
+
+                           .src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED,
+
+                           .size = TRANSFER_SIZE_4_BYTE,
+
+                           .mode = TRANSFER_MODE_REPEAT,
+
+                           .p_src = &pin_ctrl_w[0],
+
+                           .p_dest = (uint32_t*)0x40078A30,
+
+                           .num_blocks = 0, //for crab
+
+                           .length = 6
+
+                        };
+
+
+
+
+
+
 void pwm_counter_overflow (void);
 
 
@@ -176,7 +265,6 @@ void set_ol_speed_rpms(float rpms)
     float cycles_per_sec = (rpms/(10.0f));
     uint32_t count = (uint32_t)((float)(interrupt_rate_hz)/cycles_per_sec);
     p_mtr_pattern_ctrl->vel_accel.velocity = count;
-
 
 }
 
@@ -583,7 +671,7 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
 {
 
     /*** Configure the ELC to trigger DTC on PWM interrupt ***/
-
+//
     R_PMISC->PWPR_b.BOWI = 0; //enable writes
     R_PMISC->PWPR_b.PFSWE = 1;
 
@@ -593,7 +681,7 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
     R_PMISC->PWPR_b.BOWI = 1; //disable writes
 
 //the register used for ELSRnRCO[] does not matter since just triggering DTC. Make sure not to use a peripheral function that actually needs to be linked (not just dtc)
-    R_ELC->ELSRnRC0[0].ELSRn_b.ELS = 0x95; //p2 event
+    R_ELC->ELSRnRC0[15].ELSRn_b.ELS = 0x95; //p2 event
     R_ELC->ELCR_b.ELCON = 1; //enable elc for all events
 
 
@@ -617,14 +705,14 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
     uint32_t dar_w = (uint32_t)&p_ctrl->p_gpt_w->GTUDDTYC;
 
     uint32_t *dtc_vector_table_ptr = (uint32_t*)(0x200FE000);
-    *dtc_vector_table_ptr = 0;
+    *dtc_vector_table_ptr = 0x20040000;
     dtc_vector_table_ptr = dtc_vector_table_ptr+1;
-    *dtc_vector_table_ptr = 0;
+    *dtc_vector_table_ptr = 0x20040000;
 
     dtc_vector_table_ptr = dtc_vector_table_ptr+1;
+   *dtc_vector_table_ptr = 0;
+   dtc_vector_table_ptr = dtc_vector_table_ptr+3;
    *dtc_vector_table_ptr = 0x20040000;
-//   dtc_vector_table_ptr = dtc_vector_table_ptr+1;
-//   *dtc_vector_table_ptr = address;
 
 
     R_DTC->DTCST = 0;
@@ -636,15 +724,19 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
     //2. allocate transfer information (MRA,MRB,SAR,DAR,CRA,CRB) in the data area
 
     /* transfer information for first timer (u timer, first transfer) */
-    uint32_t mra_reg = 0b01101000; //normal transfer mode, word transfer (32 bits), increment Source address by 4 when SZ[1:0] = 0b10
-    uint32_t mrb_reg = 0b10010000; //enable chain transfer, continuous chain transfer ?, generate interrupt request to cpu when data transfer is complete, transfer dest is repeat or block area, fixed addres in DAR
-    uint32_t sar_reg = sar_u; //source address is pattern to display (update timer registers with)
-    uint32_t dar_reg = (uint32_t)&p_ctrl->p_gpt_u->GTUDDTYC; //give address of timer register for destination. not completely sure this is how you access the address of this register
-    uint16_t cra_reg = 6<<8 | 6; //for the six commutation cycles
-
-    uint32_t val = (((6 << 8) | 6) << 16);
 
     //place configuration values into vector table
+
+     /* Configuration values for first transfer are :
+     *  MRA: increment source address, word transfer, repeat transfer mode
+     *  MRB: fixed destination address, transfer source as repeat area, generate interrupt when specified data transfer complete, continuous chain transfer, enable chain transfer
+     *  SAR: table
+     *  DAR: register controlling duty cycle of respective timer
+     *  CRA: CRAH-6, CRAL-6, since repeat mode and 6 entries in the source table
+     *  DTCCR: rrs bit is set even though transfer info alway read since chained
+     */
+
+
     *dtc_transfer_info_ptr = (uint32_t)((0b01101000 << 24) | (0b10010000 <<16) | 0x0000);
     dtc_transfer_info_ptr++; //increment pointer
     *dtc_transfer_info_ptr = sar_u;
@@ -657,13 +749,14 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
 
 
 
-
-    /* transfer information for second timer (v timer, second transfer) (all info is the same except destination register*/
-    mra_reg = 0b00101000; //normal transfer mode, word transfer (32 bits), increment Source address by 4 when SZ[1:0] = 0b10
-    mrb_reg = 0b10000000; //enable chain transfer, continuous chain transfer ?, generate interrupt request to cpu when data transfer is complete, transfer dest is repeat or block area, fixed address in DAR
-    sar_reg = (uint32_t)&pin_ctrl_v[0]; //source address is pattern to display (update timer registers with)
-    dar_reg = (uint32_t)&p_ctrl->p_gpt_v->GTUDDTYC; //give address of timer register for destination. not completely sure this is how you access the address of this register
-    cra_reg = 6; //for the six commutation cycles
+    /* Configuration values for second transfer are : (same as first)
+    *  MRA: increment source address, word transfer, repeat transfer mode
+    *  MRB: fixed destination address, transfer source as repeat area, generate interrupt when specified data transfer complete, continuous chain transfer, enable chain transfer
+    *  SAR: table
+    *  DAR: register controlling duty cycle of respective timer
+    *  CRA: CRAH-6, CRAL-6, since repeat mode and 6 entries in the source table
+    *  DTCCR: rrs bit is set even though transfer info alway read since chained
+    */    /* transfer information for second timer (v timer, second transfer) (all info is the same except destination register*/
 
     *dtc_transfer_info_ptr = (uint32_t)((0b01101000 << 24) | (0b10010000 <<16) | 0x0000);
     dtc_transfer_info_ptr++; //increment pointer
@@ -679,13 +772,16 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
 
 
     /*transfer information for third timer (w timer, third and last transfer) all settings are the same except for the mrb.chne = 0 and mrb.disel = 0*/
-    mra_reg = 0b00101000; //normal transfer mode, word transfer (32 bits), increment Source address by 4 when SZ[1:0] = 0b10
-    mrb_reg = 0b00100000; //enable chain transfer, continuous chain transfer ?, generate interrupt request to cpu when data transfer is complete, transfer dest is repeat or block area, fixed addres in DAR
-    sar_reg = (uint32_t)&pin_ctrl_w[0]; //source address is pattern to display (update timer registers with)
-    dar_reg = (uint32_t)&p_ctrl->p_gpt_w->GTUDDTYC; //give address of timer register for destination. not completely sure this is how you access the address of this register
-    cra_reg = 6; //for the six commutation cycles
+    /* Configuration values for first transfer are :
+    *  MRA: increment source address, word transfer, repeat transfer mode
+    *  MRB: fixed destination address, transfer source as repeat area, generate interrupt when specified data transfer complete, continuous chain transfer, disable chain transfer
+    *  SAR: table
+    *  DAR: register controlling duty cycle of respective timer
+    *  CRA: CRAH-6, CRAL-6, since repeat mode and 6 entries in the source table
+    *  DTCCR: rrs bit is set even though transfer info alway read since chained
+    */
 
-    *dtc_transfer_info_ptr = (uint32_t)((0b01101000 << 24) | (0b00110000 << 16) | 0x0000);
+    *dtc_transfer_info_ptr = (uint32_t)((0b01101000 << 24) | (0b00010000 << 16) | 0x0000);
     dtc_transfer_info_ptr++; //increment pointer
     *dtc_transfer_info_ptr = sar_w;
     dtc_transfer_info_ptr++; //increment pointer
@@ -708,33 +804,15 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
 
     //5. set ICU.IELSRn.DTCE bit to 1. set ICU.IELSRn.IELS as the interrupt sources that trigger DTC. the interrupts must be enabled in NVIC
 
-        //for testing purposes, will trigger DTC off of GPIO rising edge interrupt on P
-        //IRQ07 on P001, event number 8
-    //g_sf_external_irq0.p_api->open(g_sf_external_irq0.p_ctrl, g_sf_external_irq0.p_cfg);
-
-//    /** NOTE: THE BELOW TWO LINES DISABLE THE PWM INTERRUPT. THIS IS FOR TESTING DTC ONLY ***/
-//    R_ICU->IELSRn_b[0].IELS = 0; //event signal 8, [7] is correct. corresponds to NVIC IRQ input source numbers
-//
-//    R_ICU->IELSRn_b[0].DTCE = 0;
-//
-//
-//
-    //still not completely sure how these registers are linked to the DTC
-//    R_ICU->IELSRn_b[0].IELS = 0; //event signal 8, [7] is correct. corresponds to NVIC IRQ input source numbers
-//    R_ICU->IELSRn_b[0].DTCE = 0;
-//
-//    R_ICU->IELSRn_b[1].IELS = 0; //event signal 8, [7] is correct. corresponds to NVIC IRQ input source numbers
-//    R_ICU->IELSRn_b[1].DTCE = 0;
-
-    R_ICU->IELSRn_b[3].IELS = 0x95;
-    R_ICU->IELSRn_b[3].DTCE = 1;
-
-
+    R_ICU->IELSRn_b[1].IELS = 0x95; //[1] is the number of events currently in the ICU. 0x95 is the IOPORT2_event trigger
+    R_ICU->IELSRn_b[1].DTCE = 1;
 
     //6. set enable bit for activation source interrupts to 1. when source interrupt is generated, DTC is activated
+    //not using interrupts so nothing to do here.
 
     //7. set the start module bit to 1 (DTCST.DTCST to 1)
     R_DTC->DTCST = 1; //this bit is set in the pwm control thread when control switches from open loop to closed loop
+
 }
 
 //initializes DAC12 channel 0 to be used in BEMF sensing
@@ -869,7 +947,7 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
     p_mtr_pattern_ctrl->ctrl_type = OPEN_LOOP_CONTROL; //initially starting, use open loop control till back EMF strong enough to sense with comparator
     p_mtr_pattern_ctrl->p_trap_pattern = &trap_pattern[0];
 
-    if(p_cfg->output_mode ==  PWM_OUT_COMPLEMENTARY ) //not really related to dtc or elc but makes sure proper dtc is initialized
+    if(p_cfg->output_mode ==  PWM_OUT_COMPLEMENTARY) //not really related to dtc or elc but makes sure proper dtc is initialized
     {
 
         //setup interrupt for only one timer out of the timers used for trapezoidal commutation
@@ -888,20 +966,19 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
             /* Setup only one PWM Carrier Interrupt */
             irq_handler_set = true;
 
-            /* Setup PWM Interrupt */
+//            /* Setup PWM Interrupt */
             HW_GPT_InterruptEnable(p_ctrl->p_gpt_u, GPT_INT_TYPE_OVERFLOW);
 
             ssp_vector_info_t * p_vector_info;
             R_SSP_VectorInfoGet(p_ctrl->irq, &p_vector_info);
             NVIC_SetPriority(p_ctrl->irq, 1);
-            *(p_vector_info->pp_ctrl) = p_ctrl;
+           // *(p_vector_info->pp_ctrl) = p_ctrl;
 
             R_BSP_IrqStatusClear(p_ctrl->irq);
             NVIC_ClearPendingIRQ(p_ctrl->irq);
             NVIC_EnableIRQ(p_ctrl->irq);
 
-           //enable_dtc_elc(p_ctrl); //enable dtc only for one motor
-
+           enable_dtc_elc(p_ctrl); //enable dtc only for one motor
 
 
         }

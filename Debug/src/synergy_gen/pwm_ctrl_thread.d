@@ -54,11 +54,7 @@ src/synergy_gen/pwm_ctrl_thread.o: ../src/synergy_gen/pwm_ctrl_thread.c \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_ioport_cfg.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_elc.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_icu.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_external_irq_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\instances/sf_external_irq.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\api/sf_external_irq_api.h
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h
 
 ../src/synergy_gen/pwm_ctrl_thread.h:
 
@@ -173,11 +169,3 @@ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instance
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_icu.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_external_irq_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\instances/sf_external_irq.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\api/sf_external_irq_api.h:

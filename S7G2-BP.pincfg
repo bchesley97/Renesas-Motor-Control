@@ -44,8 +44,6 @@
   <v1:configSetting configurationId="p507.gpio_mode" altId="p507.gpio_mode.gpio_mode_out.low"/>
   <v1:configSetting configurationId="p802.gpio_pupd" altId="p802.gpio_pupd.gpio_pupd_ip_up"/>
   <v1:configSetting configurationId="gpt3.mode" altId="gpt3.mode.gtiocaorgtiocb.free"/>
-  <v1:configSetting configurationId="p107.gpio_mode" altId="p107.gpio_mode.gpio_mode_peripheral"/>
-  <v1:configSetting configurationId="p106.gpio_mode" altId="p106.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p506.gpio_mode" altId="p506.gpio_mode.gpio_mode_out.low"/>
   <v1:configSetting configurationId="p309.gpio_mode" altId="p309.gpio_mode.gpio_mode_out.low"/>
   <v1:configSetting configurationId="p612" altId="p612.input"/>
@@ -68,19 +66,14 @@
   <v1:configSetting configurationId="p608" altId="p608.input"/>
   <v1:configSetting configurationId="p607" altId="p607.input"/>
   <v1:configSetting configurationId="p606" altId="p606.input"/>
-  <v1:configSetting configurationId="p304.gpio_mode" altId="p304.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="gpt11.mode" altId="gpt11.mode.disabled"/>
   <v1:configSetting configurationId="usbhs0.mode" altId="usbhs0.mode.custom"/>
   <v1:configSetting configurationId="p112.gpio_mode" altId="p112.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p104.gpio_mode" altId="p104.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="pa01.gpio_mode" altId="pa01.gpio_mode.gpio_mode_out.low"/>
-  <v1:configSetting configurationId="gpt7.gtiocb" altId="gpt7.gtiocb.p303">
-    <v1:connectionSetting altId="p303.gpt7.gtiocb"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="pa08.gpio_mode" altId="pa08.gpio_mode.gpio_mode_out.low"/>
   <v1:configSetting configurationId="p312.gpio_mode" altId="p312.gpio_mode.gpio_mode_out.low"/>
   <v1:configSetting configurationId="p603.gpio_mode" altId="p603.gpio_mode.gpio_mode_in"/>
-  <v1:configSetting configurationId="p303.gpio_drivecapacity" altId="p303.gpio_speed.gpio_speed_medium"/>
   <v1:configSetting configurationId="p502" altId="p502.cmp0.ivcmp0">
     <v1:connectionSetting altId="cmp0.ivcmp0.p502"/>
   </v1:configSetting>
@@ -98,7 +91,7 @@
   <v1:configSetting configurationId="p800.gpio_pupd" altId="p800.gpio_pupd.gpio_pupd_ip_up"/>
   <v1:configSetting configurationId="p400" altId="p400.input"/>
   <v1:configSetting configurationId="p015.gpio_mode" altId="p015.gpio_mode.gpio_mode_an"/>
-  <v1:configSetting configurationId="gpt7.mode" altId="gpt7.mode.gtiocaorgtiocb.free"/>
+  <v1:configSetting configurationId="gpt7.mode" altId="gpt7.mode.disabled"/>
   <v1:configSetting configurationId="adc0.an00" altId="adc0.an00.none"/>
   <v1:configSetting configurationId="p311" altId="p311.output.low"/>
   <v1:configSetting configurationId="p310" altId="p310.output.low"/>
@@ -112,12 +105,6 @@
   <v1:configSetting configurationId="adc0.an04" altId="adc0.an04.none"/>
   <v1:configSetting configurationId="p000.gpio_mode" altId="p000.gpio_mode.gpio_mode_an"/>
   <v1:configSetting configurationId="p400.gpio_mode" altId="p400.gpio_mode.gpio_mode_in"/>
-  <v1:configSetting configurationId="p304" altId="p304.gpt7.gtioca">
-    <v1:connectionSetting altId="gpt7.gtioca.p304"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="p303" altId="p303.gpt7.gtiocb">
-    <v1:connectionSetting altId="gpt7.gtiocb.p303"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="p302" altId="p302.gpt4.gtioca">
     <v1:connectionSetting altId="gpt4.gtioca.p302"/>
   </v1:configSetting>
@@ -129,9 +116,6 @@
   <v1:configSetting configurationId="p306" altId="p306.output.low"/>
   <v1:configSetting configurationId="p305" altId="p305.output.low"/>
   <v1:configSetting configurationId="p309" altId="p309.output.low"/>
-  <v1:configSetting configurationId="gpt7.gtioca" altId="gpt7.gtioca.p304">
-    <v1:connectionSetting altId="p304.gpt7.gtioca"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="p103.gpio_mode" altId="p103.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p213" altId="p213.input"/>
   <v1:configSetting configurationId="p112.gpio_drivecapacity" altId="p112.gpio_speed.gpio_speed_medium"/>
@@ -160,14 +144,10 @@
   <v1:configSetting configurationId="p114" altId="p114.output.low"/>
   <v1:configSetting configurationId="p604.gpio_mode" altId="p604.gpio_mode.gpio_mode_in"/>
   <v1:configSetting configurationId="adc0.an01" altId="adc0.an01.none"/>
-  <v1:configSetting configurationId="p303.gpio_mode" altId="p303.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p102" altId="p102.gpt2.gtiocb">
     <v1:connectionSetting altId="gpt2.gtiocb.p102"/>
   </v1:configSetting>
   <v1:configSetting configurationId="pa09.gpio_mode" altId="pa09.gpio_mode.gpio_mode_out.low"/>
-  <v1:configSetting configurationId="p106" altId="p106.gpt8.gtiocb">
-    <v1:connectionSetting altId="gpt8.gtiocb.p106"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="p104" altId="p104.poeg1.gtetrg">
     <v1:connectionSetting altId="poeg1.gtetrg.p104"/>
   </v1:configSetting>
@@ -176,9 +156,6 @@
   </v1:configSetting>
   <v1:configSetting configurationId="p901" altId="p901.input"/>
   <v1:configSetting configurationId="p900" altId="p900.input"/>
-  <v1:configSetting configurationId="p107" altId="p107.gpt8.gtioca">
-    <v1:connectionSetting altId="gpt8.gtioca.p107"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="p400.gpio_irq" altId="p400.gpio_irq.gpio_irq_enabled"/>
   <v1:configSetting configurationId="p213.gpio_irq" altId="p213.gpio_irq.gpio_irq_enabled"/>
   <v1:configSetting configurationId="p302.gpio_mode" altId="p302.gpio_mode.gpio_mode_peripheral"/>
@@ -212,7 +189,6 @@
   <v1:propertySetting propertyId="p801.symbolic_name" value="CFG1"/>
   <v1:propertySetting propertyId="p507.symbolic_name" value="AEN2"/>
   <v1:propertySetting propertyId="pa00.symbolic_name" value="BRAKE1"/>
-  <v1:propertySetting propertyId="p303.symbolic_name" value="PWM_W2"/>
   <v1:propertySetting propertyId="p204.symbolic_name" value="SW2#"/>
   <v1:propertySetting propertyId="p606.symbolic_name" value="FAULT1"/>
   <v1:propertySetting propertyId="p605.symbolic_name" value="HALL_W2"/>
@@ -235,18 +211,15 @@
   <v1:propertySetting propertyId="p802.symbolic_name" value="CFG2"/>
   <v1:propertySetting propertyId="p800.symbolic_name" value="CFG0"/>
   <v1:propertySetting propertyId="p302.symbolic_name" value="PWM_V1"/>
-  <v1:propertySetting propertyId="p304.symbolic_name" value="PWM_W1"/>
   <v1:propertySetting propertyId="pa01.symbolic_name" value="BRAKE2"/>
   <v1:propertySetting propertyId="p207.symbolic_name" value="SW1#"/>
   <v1:propertySetting propertyId="p608.symbolic_name" value="INP1"/>
   <v1:propertySetting propertyId="p607.symbolic_name" value="FAULT2"/>
-  <v1:propertySetting propertyId="p107.symbolic_name" value="GPT08__Pin_Option_A_GTIOC8A_A"/>
   <v1:propertySetting propertyId="p609.symbolic_name" value="INP2"/>
   <v1:propertySetting propertyId="p103.symbolic_name" value="GPT02__Pin_Option_A_GTIOC2A_A"/>
   <v1:propertySetting propertyId="p314.symbolic_name" value="GPLED7"/>
   <v1:propertySetting propertyId="pa09.symbolic_name" value="EZ2EN"/>
   <v1:propertySetting propertyId="p104.symbolic_name" value="GPT_Port_Output_Enable_GTETRGB"/>
-  <v1:propertySetting propertyId="p106.symbolic_name" value="GPT08__Pin_Option_A_GTIOC8B_A"/>
   <v1:propertySetting propertyId="p315.symbolic_name" value="GPLED8"/>
   <v1:propertySetting propertyId="pa08.symbolic_name" value="TX2EN"/>
   <v1:propertySetting propertyId="p007.symbolic_name" value="AVRL"/>
@@ -313,20 +286,13 @@
   <v1:configSetting configurationId="poeg0.gtetrg" altId="poeg0.gtetrg.p100">
     <v1:connectionSetting altId="p100.poeg0.gtetrg"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="gpt8.gtiocb" altId="gpt8.gtiocb.p106">
-    <v1:connectionSetting altId="p106.gpt8.gtiocb"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="gpt8.mode" altId="gpt8.mode.gtiocaandgtiocb.free"/>
-  <v1:configSetting configurationId="gpt8.gtioca" altId="gpt8.gtioca.p107">
-    <v1:connectionSetting altId="p107.gpt8.gtioca"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="sci0.mode" altId="sci0.mode.disabled"/>
+  <v1:configSetting configurationId="gpt8.mode" altId="gpt8.mode.disabled"/>
+  <v1:configSetting configurationId="sci0.mode" altId="sci0.mode.asynchronous.free"/>
   <v1:configSetting configurationId="sci8.mode" altId="sci8.mode.disabled"/>
   <v1:configSetting configurationId="poeg1.gtetrg" altId="poeg1.gtetrg.p104">
     <v1:connectionSetting altId="p104.poeg1.gtetrg"/>
   </v1:configSetting>
   <v1:configSetting configurationId="p302.gpio_drivecapacity" altId="p302.gpio_speed.gpio_speed_medium"/>
-  <v1:configSetting configurationId="p304.gpio_drivecapacity" altId="p304.gpio_speed.gpio_speed_medium"/>
   <v1:configSetting configurationId="p301.gpio_drivecapacity" altId="p301.gpio_speed.gpio_speed_medium"/>
   <v1:configSetting configurationId="p207.gpio_mode" altId="p207.gpio_mode.gpio_mode_out.low"/>
   <v1:configSetting configurationId="adc0.mode" altId="adc0.mode.custom"/>
@@ -504,22 +470,9 @@
   <v1:configSetting configurationId="p204.gpio_drivecapacity" altId="p204.gpio_speed.gpio_speed_medium"/>
   <v1:configSetting configurationId="p513.gpio_drivecapacity" altId="p513.gpio_speed.gpio_speed_high"/>
   <v1:configSetting configurationId="p513.gpio_pupd" altId="p513.gpio_pupd.gpio_pupd_ip_up"/>
-  <v1:configSetting configurationId="gpt9.mode" altId="gpt9.mode.gtiocaandgtiocb.free"/>
-  <v1:configSetting configurationId="gpt9.gtioca" altId="gpt9.gtioca.p411">
-    <v1:connectionSetting altId="p411.gpt9.gtioca"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="gpt9.gtiocb" altId="gpt9.gtiocb.p410">
-    <v1:connectionSetting altId="p410.gpt9.gtiocb"/>
-  </v1:configSetting>
+  <v1:configSetting configurationId="gpt9.mode" altId="gpt9.mode.disabled"/>
   <v1:configSetting configurationId="cmp0.mode" altId="cmp0.mode.custom"/>
-  <v1:configSetting configurationId="gpt10.gtiocb" altId="gpt10.gtiocb.p408">
-    <v1:connectionSetting altId="p408.gpt10.gtiocb"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="gpt10.gtioca" altId="gpt10.gtioca.p409">
-    <v1:connectionSetting altId="p409.gpt10.gtioca"/>
-  </v1:configSetting>
   <v1:configSetting configurationId="gpt12.pairing" altId="gpt12.pairing.a"/>
-  <v1:configSetting configurationId="p408.gpio_mode" altId="p408.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="p411.gpio_mode" altId="p411.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="cmp0.ivcmp0" altId="cmp0.ivcmp0.p502">
     <v1:connectionSetting altId="p502.cmp0.ivcmp0"/>
@@ -530,22 +483,15 @@
   <v1:configSetting configurationId="cmp0.ivcmp2" altId="cmp0.ivcmp2.p000">
     <v1:connectionSetting altId="p000.cmp0.ivcmp2"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="p409.gpio_mode" altId="p409.gpio_mode.gpio_mode_peripheral"/>
   <v1:configSetting configurationId="gpt9.pairing" altId="gpt9.pairing.free"/>
   <v1:configSetting configurationId="p410.gpio_mode" altId="p410.gpio_mode.gpio_mode_peripheral"/>
-  <v1:configSetting configurationId="p410" altId="p410.gpt9.gtiocb">
-    <v1:connectionSetting altId="gpt9.gtiocb.p410"/>
+  <v1:configSetting configurationId="p410" altId="p410.sci0.rxd">
+    <v1:connectionSetting altId="sci0.rxd.p410"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="p411" altId="p411.gpt9.gtioca">
-    <v1:connectionSetting altId="gpt9.gtioca.p411"/>
+  <v1:configSetting configurationId="p411" altId="p411.sci0.txd">
+    <v1:connectionSetting altId="sci0.txd.p411"/>
   </v1:configSetting>
-  <v1:configSetting configurationId="p409" altId="p409.gpt10.gtioca">
-    <v1:connectionSetting altId="gpt10.gtioca.p409"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="p408" altId="p408.gpt10.gtiocb">
-    <v1:connectionSetting altId="gpt10.gtiocb.p408"/>
-  </v1:configSetting>
-  <v1:configSetting configurationId="gpt10.mode" altId="gpt10.mode.gtiocaandgtiocb.free"/>
+  <v1:configSetting configurationId="gpt10.mode" altId="gpt10.mode.disabled"/>
   <v1:configSetting configurationId="gpt13.pairing" altId="gpt13.pairing.a"/>
   <v1:configSetting configurationId="p014.gpio_mode" altId="p014.gpio_mode.gpio_mode_an"/>
   <v1:configSetting configurationId="dac0.mode" altId="dac0.mode.enabled"/>
@@ -598,4 +544,34 @@
   <v1:configSetting configurationId="p101.gpio_mode" altId="p101.gpio_mode.gpio_mode_out.low"/>
   <v1:configSetting configurationId="p101" altId="p101.output.low"/>
   <v1:configSetting configurationId="p101.gpio_irq" altId="p101.gpio_irq.gpio_irq_enabled"/>
+  <v1:configSetting configurationId="p407.gpio_mode" altId="p407.gpio_mode.gpio_mode_peripheral"/>
+  <v1:configSetting configurationId="usbfs0.mode" altId="usbfs0.mode.device"/>
+  <v1:configSetting configurationId="usbfs0.vbus" altId="usbfs0.vbus.p407">
+    <v1:connectionSetting altId="p407.usbfs0.vbus"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p407" altId="p407.usbfs0.vbus">
+    <v1:connectionSetting altId="usbfs0.vbus.p407"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="cmp0.vcout" altId="cmp0.vcout.none"/>
+  <v1:configSetting configurationId="cmp0.ivref3" altId="cmp0.ivref3.none"/>
+  <v1:configSetting configurationId="cmp0.ivref0" altId="cmp0.ivref0.p500">
+    <v1:connectionSetting altId="p500.cmp0.ivref0"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="cmp0.ivref1" altId="cmp0.ivref1.p501">
+    <v1:connectionSetting altId="p501.cmp0.ivref1"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p501" altId="p501.cmp0.ivref1">
+    <v1:connectionSetting altId="cmp0.ivref1.p501"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p500" altId="p500.cmp0.ivref0">
+    <v1:connectionSetting altId="cmp0.ivref0.p500"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="p500.gpio_mode" altId="p500.gpio_mode.gpio_mode_an"/>
+  <v1:configSetting configurationId="p501.gpio_mode" altId="p501.gpio_mode.gpio_mode_an"/>
+  <v1:configSetting configurationId="sci0.txd" altId="sci0.txd.p411">
+    <v1:connectionSetting altId="p411.sci0.txd"/>
+  </v1:configSetting>
+  <v1:configSetting configurationId="sci0.rxd" altId="sci0.rxd.p410">
+    <v1:connectionSetting altId="p410.sci0.rxd"/>
+  </v1:configSetting>
 </v1:pinSettings>

@@ -10,11 +10,14 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include synergy/ssp/src/framework/sf_uart_comms/subdir.mk
 -include synergy/ssp/src/framework/sf_motion/subdir.mk
+-include synergy/ssp/src/driver/r_sci_uart/subdir.mk
 -include synergy/ssp/src/driver/r_ioport/subdir.mk
 -include synergy/ssp/src/driver/r_fmi/subdir.mk
 -include synergy/ssp/src/driver/r_encoder_gpt/subdir.mk
 -include synergy/ssp/src/driver/r_elc/subdir.mk
+-include synergy/ssp/src/driver/r_dtc/subdir.mk
 -include synergy/ssp/src/driver/r_cgc/hw/subdir.mk
 -include synergy/ssp/src/driver/r_cgc/subdir.mk
 -include synergy/ssp/src/driver/changed_src_files/subdir.mk

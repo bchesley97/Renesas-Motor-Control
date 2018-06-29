@@ -41,6 +41,7 @@
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_board_s3a3_tb.1.4.0.pack" shortname="Renesas.Synergy_board_s3a3_tb.1.4.0.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_ble_rl78g1d.1.4.0.pack" shortname="Renesas.Synergy_ble_rl78g1d.1.4.0.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_touch_panel_i2c_sx8654.1.3.3.pack" shortname="Renesas.Synergy_touch_panel_i2c_sx8654.1.3.3.pack"/>
+    <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_board_s7g2_bp.1.5.0-rc.1.pack" shortname="Renesas.Synergy_board_s7g2_bp.1.5.0-rc.1.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_board_s1ja_tb.1.4.0.pack" shortname="Renesas.Synergy_board_s1ja_tb.1.4.0.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_board_s3a3_tb.1.3.2.pack" shortname="Renesas.Synergy_board_s3a3_tb.1.3.2.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_board_s7g2_dk.1.3.0.pack" shortname="Renesas.Synergy_board_s7g2_dk.1.3.0.pack"/>
@@ -92,6 +93,7 @@
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_mcu_s5d9.1.3.3.pack" shortname="Renesas.Synergy_mcu_s5d9.1.3.3.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_board_s5d5_tb.1.3.3.pack" shortname="Renesas.Synergy_board_s5d5_tb.1.3.3.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_cellular_cat3.1.3.3.pack" shortname="Renesas.Synergy_cellular_cat3.1.3.3.pack"/>
+    <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.SynergyMotion.1.5.0-rc.1.pack" shortname="Renesas.SynergyMotion.1.5.0-rc.1.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_board_s3a6_tb.1.3.3.pack" shortname="Renesas.Synergy_board_s3a6_tb.1.3.3.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy_mcu_s3a6.1.3.2.pack" shortname="Renesas.Synergy_mcu_s3a6.1.3.2.pack"/>
     <pack descriptionsadded="true" path="C:\Renesas\Synergy\e2studio_v6.2.0_ssp_v1.4.0\internal\projectgen\arm\packs\Renesas.Synergy.1.3.3.pack" shortname="Renesas.Synergy.1.3.3.pack"/>

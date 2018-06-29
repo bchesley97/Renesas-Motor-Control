@@ -2,9 +2,9 @@
 #include "bsp_api.h"
 #include "tx_api.h"
 
-extern void uart_thread_create(void);
 extern void motion_thread_create(void);
 extern void pwm_ctrl_thread_create(void);
+extern void uart_thread_create(void);
 
 uint32_t g_ssp_common_thread_count;
 bool g_ssp_common_initialized;
@@ -41,9 +41,9 @@ void tx_application_define(void *first_unused_memory)
     /* Create semaphore to make sure common init is done before threads start running. */
     tx_semaphore_create (&g_ssp_common_initialized_semaphore, "SSP Common Init Sem", 1);
 
-    uart_thread_create ();
     motion_thread_create ();
     pwm_ctrl_thread_create ();
+    uart_thread_create ();
 
 #ifdef TX_USER_ENABLE_TRACE
     TX_USER_ENABLE_TRACE;

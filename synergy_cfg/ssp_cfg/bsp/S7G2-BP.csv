@@ -92,13 +92,13 @@ POEG0: GTETRG
 SCI8: SDA
 SCI8: TXD_MOSI
 SPI0: SSL2"
-"P106","126","GPT8_GTIOCB","GPT08__Pin_Option_A_GTIOC8B_A","Low","","Peripheral mode","CMOS","None","BUS0: D6_DQ6
+"P106","126","","","","","Disabled","","","BUS0: D6_DQ6
 GLCDC0: LCD_DATA00
 GPT8: GTIOCB
 KINT0: KRM6
 SCI8: SCK
 SPI0: SSL3"
-"P107","125","GPT8_GTIOCA","GPT08__Pin_Option_A_GTIOC8A_A","Low","","Peripheral mode","CMOS","None","BUS0: D7_DQ7
+"P107","125","","","","","Disabled","","","BUS0: D7_DQ7
 GLCDC0: LCD_DATA01
 GPT8: GTIOCA
 KINT0: KRM7
@@ -249,10 +249,10 @@ OPS0: GTOUUP
 SCI2: SDA
 SCI2: TXD_MOSI
 SPI1: SSL3"
-"P303","85","GPT7_GTIOCB","PWM_W2","Medium","","Peripheral mode","CMOS","None","BUS0: A08
+"P303","85","","","","","Disabled","","","BUS0: A08
 GLCDC0: LCD_DATA15
 GPT7: GTIOCB"
-"P304","82","GPT7_GTIOCA","PWM_W1","Medium","None","Peripheral mode","CMOS","None","BUS0: A09
+"P304","82","","","","","Disabled","","","BUS0: A09
 GLCDC0: LCD_DATA16
 GPT7: GTIOCA
 IRQ0: IRQ09
@@ -330,7 +330,7 @@ SSI0: SSITXD"
 GPT1: GTIOCB
 PDC0: PIXD4
 SSI0: SSIRXD"
-"P407","44","","","","","Disabled","","","ADC0: ADTRG
+"P407","44","USBFS0_VBUS","","Low","","Peripheral mode","CMOS","None","ADC0: ADTRG
 CTSU0: TS03
 ETHERC0: EXOUT
 IIC0: SDA
@@ -338,7 +338,7 @@ RTC0: RTCOUT
 SCI4: CTS_RTS_SS
 SPI1: SSL3
 USBFS0: VBUS"
-"P408","43","GPT10_GTIOCB","","Low","None","Peripheral mode","CMOS","None","CTSU0: TS04
+"P408","43","","","","","Disabled","","","CTSU0: TS04
 ETHERC0: CRS_DV
 GPT10: GTIOCB
 IRQ0: IRQ07
@@ -347,7 +347,7 @@ SCI3: RXD_MISO
 SCI3: SCL
 USBFS0: ID
 USBHS0: ID"
-"P409","42","GPT10_GTIOCA","","Low","None","Peripheral mode","CMOS","None","CTSU0: TS05
+"P409","42","","","","","Disabled","","","CTSU0: TS05
 ETHERC0: RX_ER
 GPT10: GTIOCA
 IRQ0: IRQ06
@@ -356,7 +356,7 @@ SCI3: SDA
 SCI3: TXD_MOSI
 USBFS0: EXICEN
 USBHS0: EXICEN"
-"P410","41","GPT9_GTIOCB","","Low","None","Peripheral mode","CMOS","None","AGT1: AGTOB
+"P410","41","SCI0_RXD_MISO","","Low","None","Peripheral mode","CMOS","None","AGT1: AGTOB
 CTSU0: TS06
 ETHERC0: RXD1
 GPT9: GTIOCB
@@ -367,7 +367,7 @@ SCI0: SCL
 SCI3: SCK
 SDHI0: DAT1
 SPI0: MISO"
-"P411","40","GPT9_GTIOCA","","Low","None","Peripheral mode","CMOS","None","AGT1: AGTOA
+"P411","40","SCI0_TXD_MOSI","","Low","None","Peripheral mode","CMOS","None","AGT1: AGTOA
 CTSU0: TS07
 ETHERC0: RXD0
 GPT9: GTIOCA
@@ -397,7 +397,7 @@ SPI0: SSL1"
 "P415","36","","","","","Disabled","","","CTSU0: TS11
 ETHERC0: TXD_EN
 SPI0: SSL2"
-"P500","140","","","","","Disabled","","","ADC0: AN16
+"P500","140","CMP0_IVREF0","","","","Analog mode","","","ADC0: AN16
 AGT0: AGTOA
 CMP0: IVREF0
 GPT11: GTIOCA
@@ -405,7 +405,7 @@ OPS0: GTIU
 QSPI0: QSPCLK
 SDHI1: CLK
 USBFS0: VBUSEN"
-"P501","141","","","","","Disabled","","","ADC1: AN16
+"P501","141","CMP0_IVREF1","","","","Analog mode","","","ADC1: AN16
 AGT0: AGTOB
 CMP0: IVREF1
 GPT11: GTIOCB

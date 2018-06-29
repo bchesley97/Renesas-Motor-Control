@@ -7,13 +7,15 @@ bool pwm_pattern_update = 0; //global variable. this variable is used in the ISR
 
 extern phase_pin_ctrl_t pins_ctrl[];
 extern phase_pin_ctrl_t *p_pins_ctrl;
-
+extern motor_instance_t const *g_motors[16];
 /* PWM Control Thread entry function */
 void pwm_ctrl_thread_entry(void)
 {
 
     tx_thread_sleep (5); //update every 10 ms, less for closed loop control (faster speeds)
 
+    uint32_t acceleration_counter = 0;
+    uint8_t pwm_duty_cycle = 1; //in percent, this is the starting value
 
     while (1)
     {
@@ -21,10 +23,21 @@ void pwm_ctrl_thread_entry(void)
         //check which type of control to perform
         if (p_mtr_pattern_ctrl->ctrl_type == OPEN_LOOP_CONTROL)
         {
-            //check to make sure the pwm update has registered with the ISR. used as a synchronizing tool since cant use semaphores in an ISR
+
             if (p_mtr_pattern_ctrl->vel_accel.velocity > CONTROL_SWITCH_VELOCITY)
             {
                 p_mtr_pattern_ctrl->vel_accel.velocity -= p_mtr_pattern_ctrl->vel_accel.acceleration; //add acceleration to the velocity (subtracting because these are in terms of pwm cycles)
+
+//                acceleration_counter++;
+//                if(acceleration_counter > 9)
+//                {
+//                    acceleration_counter = 0;
+//                    change_pwm_duty(pwm_duty_cycle, g_motors[1]->p_ctrl);
+//                    pwm_duty_cycle+=3;
+//
+//                }
+
+
                 tx_thread_sleep (2); //update every 500 ms
             }
 

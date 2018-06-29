@@ -88,8 +88,8 @@ Synergy Configuration
       P103 129 GPT2_GTIOCA GPT02__Pin_Option_A_GTIOC2A_A Low - "Peripheral mode" CMOS None "BUS0: D3_DQ3; GLCDC0: LCD_TCON1; GPT2: GTIOCA; KINT0: KRM3; OPS0: GTOWUP; SCI0: CTS_RTS_SS; SPI0: SSL0" 
       P104 128 POEG1_GTETRG GPT_Port_Output_Enable_GTETRGB Low None "Peripheral mode" CMOS None "BUS0: D4_DQ4; GLCDC0: LCD_TCON2; IRQ0: IRQ01; KINT0: KRM4; POEG1: GTETRG; SCI8: RXD_MISO; SCI8: SCL; SPI0: SSL1" 
       P105 127 - - - - Disabled - - "BUS0: D5_DQ5; GLCDC0: LCD_TCON3; IRQ0: IRQ00; KINT0: KRM5; POEG0: GTETRG; SCI8: SDA; SCI8: TXD_MOSI; SPI0: SSL2" 
-      P106 126 GPT8_GTIOCB GPT08__Pin_Option_A_GTIOC8B_A Low - "Peripheral mode" CMOS None "BUS0: D6_DQ6; GLCDC0: LCD_DATA00; GPT8: GTIOCB; KINT0: KRM6; SCI8: SCK; SPI0: SSL3" 
-      P107 125 GPT8_GTIOCA GPT08__Pin_Option_A_GTIOC8A_A Low - "Peripheral mode" CMOS None "BUS0: D7_DQ7; GLCDC0: LCD_DATA01; GPT8: GTIOCA; KINT0: KRM7; SCI8: CTS_RTS_SS" 
+      P106 126 - - - - Disabled - - "BUS0: D6_DQ6; GLCDC0: LCD_DATA00; GPT8: GTIOCB; KINT0: KRM6; SCI8: SCK; SPI0: SSL3" 
+      P107 125 - - - - Disabled - - "BUS0: D7_DQ7; GLCDC0: LCD_DATA01; GPT8: GTIOCA; KINT0: KRM7; SCI8: CTS_RTS_SS" 
       P108 89 DEBUG0_TMS JTAG_TMS Low - "Peripheral mode" CMOS None "DEBUG0: SWDIO; DEBUG0: TMS; GPT0: GTIOCB; SCI9: CTS_RTS_SS; SPI1: SSL0" 
       P109 90 DEBUG0_TDO JTAG_TDO Low - "Peripheral mode" CMOS None "CAN1: CTX; CGC0: CLKOUT; DEBUG0: SWO; DEBUG0: TDO; GPT1: GTIOCA; OPS0: GTOVUP; SCI9: SDA; SCI9: TXD_MOSI; SPI1: MOSI" 
       P110 91 DEBUG0_TDI JTAG_TDI Low None "Peripheral mode" CMOS None "CAN1: CRX; CMP0: VCOUT; DEBUG0: TDI; GPT1: GTIOCB; IRQ0: IRQ03; OPS0: GTOVLO; SCI2: CTS_RTS_SS; SCI9: RXD_MISO; SCI9: SCL; SPI1: MISO" 
@@ -111,8 +111,8 @@ Synergy Configuration
       P300 88 DEBUG0_TCK JTAG_TCK Low - "Peripheral mode" CMOS None "DEBUG0: SWCLK; DEBUG0: TCK; GPT0: GTIOCA; SPI1: SSL1" 
       P301 87 GPT4_GTIOCB PWM_V2 Medium None "Peripheral mode" CMOS None "BUS0: A06; GLCDC0: LCD_DATA13; GPT4: GTIOCB; IRQ0: IRQ06; OPS0: GTOULO; SCI2: RXD_MISO; SCI2: SCL; SPI1: SSL2" 
       P302 86 GPT4_GTIOCA PWM_V1 Medium None "Peripheral mode" CMOS None "BUS0: A07; GLCDC0: LCD_DATA14; GPT4: GTIOCA; IRQ0: IRQ05; OPS0: GTOUUP; SCI2: SDA; SCI2: TXD_MOSI; SPI1: SSL3" 
-      P303 85 GPT7_GTIOCB PWM_W2 Medium - "Peripheral mode" CMOS None "BUS0: A08; GLCDC0: LCD_DATA15; GPT7: GTIOCB" 
-      P304 82 GPT7_GTIOCA PWM_W1 Medium None "Peripheral mode" CMOS None "BUS0: A09; GLCDC0: LCD_DATA16; GPT7: GTIOCA; IRQ0: IRQ09; SCI6: RXD_MISO; SCI6: SCL" 
+      P303 85 - - - - Disabled - - "BUS0: A08; GLCDC0: LCD_DATA15; GPT7: GTIOCB" 
+      P304 82 - - - - Disabled - - "BUS0: A09; GLCDC0: LCD_DATA16; GPT7: GTIOCA; IRQ0: IRQ09; SCI6: RXD_MISO; SCI6: SCL" 
       P305 81 GPIO AEN1 Low None "Output mode (Initial Low)" CMOS None "BUS0: A10; GLCDC0: LCD_DATA17; IRQ0: IRQ08; SCI6: SDA; SCI6: TXD_MOSI" 
       P306 80 GPIO AEN2 Low - "Output mode (Initial Low)" CMOS None "BUS0: A11; GLCDC0: LCD_DATA18; SCI6: SCK" 
       P307 79 - - - - Disabled - - "BUS0: A12; GLCDC0: LCD_DATA19; SCI6: CTS_RTS_SS" 
@@ -131,17 +131,17 @@ Synergy Configuration
       P404 5 - - - - Disabled - - "ETHERC1: MDIO; GPT3: GTIOCB; PDC0: PIXD6; RTC0: RTCIC2; SSI0: SSIWS" 
       P405 6 GPT1_GTIOCA - Low - "Peripheral mode" CMOS None "ETHERC1: TXD_EN; GPT1: GTIOCA; PDC0: PIXD5; SSI0: SSITXD" 
       P406 7 GPT1_GTIOCB - Low - "Peripheral mode" CMOS None "ETHERC1: TXD1; GPT1: GTIOCB; PDC0: PIXD4; SSI0: SSIRXD" 
-      P407 44 - - - - Disabled - - "ADC0: ADTRG; CTSU0: TS03; ETHERC0: EXOUT; IIC0: SDA; RTC0: RTCOUT; SCI4: CTS_RTS_SS; SPI1: SSL3; USBFS0: VBUS" 
-      P408 43 GPT10_GTIOCB - Low None "Peripheral mode" CMOS None "CTSU0: TS04; ETHERC0: CRS_DV; GPT10: GTIOCB; IRQ0: IRQ07; OPS0: GTOWLO; SCI3: RXD_MISO; SCI3: SCL; USBFS0: ID; USBHS0: ID" 
-      P409 42 GPT10_GTIOCA - Low None "Peripheral mode" CMOS None "CTSU0: TS05; ETHERC0: RX_ER; GPT10: GTIOCA; IRQ0: IRQ06; OPS0: GTOWUP; SCI3: SDA; SCI3: TXD_MOSI; USBFS0: EXICEN; USBHS0: EXICEN" 
-      P410 41 GPT9_GTIOCB - Low None "Peripheral mode" CMOS None "AGT1: AGTOB; CTSU0: TS06; ETHERC0: RXD1; GPT9: GTIOCB; IRQ0: IRQ05; OPS0: GTOVLO; SCI0: RXD_MISO; SCI0: SCL; SCI3: SCK; SDHI0: DAT1; SPI0: MISO" 
-      P411 40 GPT9_GTIOCA - Low None "Peripheral mode" CMOS None "AGT1: AGTOA; CTSU0: TS07; ETHERC0: RXD0; GPT9: GTIOCA; IRQ0: IRQ04; OPS0: GTOVUP; SCI0: SDA; SCI0: TXD_MOSI; SCI3: CTS_RTS_SS; SDHI0: DAT0; SPI0: MOSI" 
+      P407 44 USBFS0_VBUS - Low - "Peripheral mode" CMOS None "ADC0: ADTRG; CTSU0: TS03; ETHERC0: EXOUT; IIC0: SDA; RTC0: RTCOUT; SCI4: CTS_RTS_SS; SPI1: SSL3; USBFS0: VBUS" 
+      P408 43 - - - - Disabled - - "CTSU0: TS04; ETHERC0: CRS_DV; GPT10: GTIOCB; IRQ0: IRQ07; OPS0: GTOWLO; SCI3: RXD_MISO; SCI3: SCL; USBFS0: ID; USBHS0: ID" 
+      P409 42 - - - - Disabled - - "CTSU0: TS05; ETHERC0: RX_ER; GPT10: GTIOCA; IRQ0: IRQ06; OPS0: GTOWUP; SCI3: SDA; SCI3: TXD_MOSI; USBFS0: EXICEN; USBHS0: EXICEN" 
+      P410 41 SCI0_RXD_MISO - Low None "Peripheral mode" CMOS None "AGT1: AGTOB; CTSU0: TS06; ETHERC0: RXD1; GPT9: GTIOCB; IRQ0: IRQ05; OPS0: GTOVLO; SCI0: RXD_MISO; SCI0: SCL; SCI3: SCK; SDHI0: DAT1; SPI0: MISO" 
+      P411 40 SCI0_TXD_MOSI - Low None "Peripheral mode" CMOS None "AGT1: AGTOA; CTSU0: TS07; ETHERC0: RXD0; GPT9: GTIOCA; IRQ0: IRQ04; OPS0: GTOVUP; SCI0: SDA; SCI0: TXD_MOSI; SCI3: CTS_RTS_SS; SDHI0: DAT0; SPI0: MOSI" 
       P412 39 - - - - Disabled - - "CTSU0: TS08; ETHERC0: REF50CK; OPS0: GTOULO; SCI0: SCK; SDHI0: CMD; SPI0: RSPCK" 
       P413 38 - - - - Disabled - - "CTSU0: TS09; ETHERC0: TXD0; OPS0: GTOUUP; SCI0: CTS_RTS_SS; SDHI0: CLK; SPI0: SSL0" 
       P414 37 - - - - Disabled - - "CTSU0: TS10; ETHERC0: TXD1; SDHI0: WP; SPI0: SSL1" 
       P415 36 - - - - Disabled - - "CTSU0: TS11; ETHERC0: TXD_EN; SPI0: SSL2" 
-      P500 140 - - - - Disabled - - "ADC0: AN16; AGT0: AGTOA; CMP0: IVREF0; GPT11: GTIOCA; OPS0: GTIU; QSPI0: QSPCLK; SDHI1: CLK; USBFS0: VBUSEN" 
-      P501 141 - - - - Disabled - - "ADC1: AN16; AGT0: AGTOB; CMP0: IVREF1; GPT11: GTIOCB; IRQ0: IRQ11; OPS0: GTIV; QSPI0: QSSL; SCI5: SDA; SCI5: TXD_MOSI; SDHI1: CMD; USBFS0: OVRCURA" 
+      P500 140 CMP0_IVREF0 - - - "Analog mode" - - "ADC0: AN16; AGT0: AGTOA; CMP0: IVREF0; GPT11: GTIOCA; OPS0: GTIU; QSPI0: QSPCLK; SDHI1: CLK; USBFS0: VBUSEN" 
+      P501 141 CMP0_IVREF1 - - - "Analog mode" - - "ADC1: AN16; AGT0: AGTOB; CMP0: IVREF1; GPT11: GTIOCB; IRQ0: IRQ11; OPS0: GTIV; QSPI0: QSSL; SCI5: SDA; SCI5: TXD_MOSI; SDHI1: CMD; USBFS0: OVRCURA" 
       P502 142 CMP0_IVCMP0 - - - "Analog mode" - - "ADC0: AN17; CMP0: IVCMP0; GPT12: GTIOCA; IRQ0: IRQ12; OPS0: GTIW; QSPI0: QIO0; SCI5: RXD_MISO; SCI5: SCL; SDHI1: DAT0; USBFS0: OVRCURB" 
       P503 143 - - - - Disabled - - "ADC1: AN17; GPT12: GTIOCB; POEG2: GTETRG; QSPI0: QIO1; SCI5: SCK; SCI6: CTS_RTS_SS; SDHI1: DAT1; USBFS0: EXICEN" 
       P504 144 - - - - Disabled - - "ADC0: AN18; GPT13: GTIOCA; POEG3: GTETRG; QSPI0: QIO2; SCI5: CTS_RTS_SS; SCI6: SCK; SDHI1: DAT2; USBFS0: ID" 
@@ -270,6 +270,21 @@ Synergy Configuration
   Module "Incremental Encoder Driver on r_encoder"
     Parameter Checking: Default (BSP)
     
+  Module "Communications Framework on sf_uart_comms"
+    Parameter Checking: Default (BSP)
+    Read Input Queue Size (4-Byte Words): 15
+    
+  Module "UART Driver on r_sci_uart"
+    External RTS Operation: Disable
+    Reception: Enable
+    Transmission: Enable
+    Parameter Checking: Default (BSP)
+    
+  Module "Transfer Driver on r_dtc"
+    Parameter Checking: Default (BSP)
+    Software Start: Disabled
+    Linker section to keep DTC vector table: .ssp_dtc_vector_table
+    
   HAL
     Instance "g_elc ELC Driver on r_elc"
       Name [Fixed]: g_elc
@@ -283,19 +298,11 @@ Synergy Configuration
     Instance "g_fmi FMI Driver on r_fmi"
       Name: g_fmi
       
-  Thread "UART Thread"
-    Symbol: uart_thread
-    Name: UART Thread
-    Stack size (bytes): 1024
-    Priority: 5
-    Auto start: Enabled
-    Time slicing interval (ticks): 1
-    
   Thread "Motion Thread"
     Symbol: motion_thread
     Name: Motion Thread
     Stack size (bytes): 1024
-    Priority: 6
+    Priority: 7
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
@@ -413,7 +420,7 @@ Synergy Configuration
     Symbol: pwm_ctrl_thread
     Name: PWM Control Thread
     Stack size (bytes): 1024
-    Priority: 5
+    Priority: 7
     Auto start: Enabled
     Time slicing interval (ticks): 1
     
@@ -421,4 +428,72 @@ Synergy Configuration
       Name: New Event Flags
       Symbol: g_event_change_pattern
       
+  Thread "Uart Thread"
+    Symbol: uart_thread
+    Name: Uart Thread
+    Stack size (bytes): 1024
+    Priority: 7
+    Auto start: Enabled
+    Time slicing interval (ticks): 1
+    
+    Instance "g_sf_uart Communications Framework on sf_uart_comms"
+      Name: g_sf_uart
+      Name of generated initialization function: sf_comms_init0
+      Auto Initialization: Enable
+      
+      Instance "g_uart0 UART Driver on r_sci_uart"
+        Name: g_uart0
+        Channel: 0
+        Baud Rate: 9600
+        Data Bits: 8bits
+        Parity: None
+        Stop Bits: 1bit
+        CTS/RTS Selection: RTS (CTS is disabled)
+        Name of UART callback function to be defined by user: NULL
+        Name of UART callback function for the RTS external pin control to be defined by user: NULL
+        Clock Source: Internal Clock
+        Baudrate Clock Output from SCK pin: Disable
+        Start bit detection: Falling Edge
+        Noise Cancel: Disable
+        Bit Rate Modulation Enable: Enable
+        Receive FIFO Trigger Level: Max
+        Receive Interrupt Priority: Priority 4 (CM4: valid, CM0+: invalid)
+        Transmit Interrupt Priority: Priority 4 (CM4: valid, CM0+: invalid)
+        Transmit End Interrupt Priority: Priority 4 (CM4: valid, CM0+: invalid)
+        Error Interrupt Priority: Disabled
+        
+        Instance "g_transfer0 Transfer Driver on r_dtc Event SCI0 TXI"
+          Name: g_transfer0
+          Mode: Normal
+          Transfer Size: 1 Byte
+          Destination Address Mode: Fixed
+          Source Address Mode: Incremented
+          Repeat Area (Unused in Normal Mode): Source
+          Interrupt Frequency: After all transfers have completed
+          Destination Pointer: NULL
+          Source Pointer: NULL
+          Number of Transfers: 0
+          Number of Blocks (Valid only in Block Mode): 0
+          Activation Source (Must enable IRQ): Event SCI0 TXI
+          Auto Enable: False
+          Callback (Only valid with Software start): NULL
+          ELC Software Event Interrupt Priority: Disabled
+          
+        Instance "g_transfer1 Transfer Driver on r_dtc Event SCI0 RXI"
+          Name: g_transfer1
+          Mode: Normal
+          Transfer Size: 1 Byte
+          Destination Address Mode: Incremented
+          Source Address Mode: Fixed
+          Repeat Area (Unused in Normal Mode): Destination
+          Interrupt Frequency: After all transfers have completed
+          Destination Pointer: NULL
+          Source Pointer: NULL
+          Number of Transfers: 0
+          Number of Blocks (Valid only in Block Mode): 0
+          Activation Source (Must enable IRQ): Event SCI0 RXI
+          Auto Enable: False
+          Callback (Only valid with Software start): NULL
+          ELC Software Event Interrupt Priority: Disabled
+          
   Messaging

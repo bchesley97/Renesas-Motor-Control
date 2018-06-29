@@ -234,7 +234,7 @@ void motion_thread_create(void)
     /* Initialize each kernel object. */
 
     tx_thread_create (&motion_thread, (CHAR *) "Motion Thread", motion_thread_func, (ULONG) NULL, &motion_thread_stack,
-                      1024, 6, 6, 1, TX_AUTO_START);
+                      1024, 7, 7, 1, TX_AUTO_START);
 }
 
 static void motion_thread_func(ULONG thread_input)

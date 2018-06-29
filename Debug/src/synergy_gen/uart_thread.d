@@ -54,7 +54,18 @@ src/synergy_gen/uart_thread.o: ../src/synergy_gen/uart_thread.c \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_ioport_cfg.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_elc.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_sci_uart.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_uart_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_sci_uart_cfg.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\instances/sf_uart_comms.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\api/sf_comms_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\framework/sf_uart_comms_cfg.h
 
 ../src/synergy_gen/uart_thread.h:
 
@@ -169,3 +180,25 @@ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instance
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_elc_cfg.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_dtc.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_dtc_cfg.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_sci_uart.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_uart_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_sci_uart_cfg.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\instances/sf_uart_comms.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\api/sf_comms_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\framework/sf_uart_comms_cfg.h:

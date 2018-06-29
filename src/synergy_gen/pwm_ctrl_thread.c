@@ -24,7 +24,7 @@ void pwm_ctrl_thread_create(void)
     tx_event_flags_create (&g_event_change_pattern, (CHAR *) "New Event Flags");
 
     tx_thread_create (&pwm_ctrl_thread, (CHAR *) "PWM Control Thread", pwm_ctrl_thread_func, (ULONG) NULL,
-                      &pwm_ctrl_thread_stack, 1024, 5, 5, 1, TX_AUTO_START);
+                      &pwm_ctrl_thread_stack, 1024, 7, 7, 1, TX_AUTO_START);
 }
 
 static void pwm_ctrl_thread_func(ULONG thread_input)

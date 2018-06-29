@@ -9,7 +9,7 @@ m_console_t mc_uart;
 //sf_comms_instance_t const * p_comms;
 volatile ssp_err_t err;
 
-static char input_menu[] = "Speed(RPMS): \nTorque: ";
+char input_menu[] = "Command: ";
 
 
 void uart_thread_entry(void);
@@ -17,11 +17,9 @@ void uart_thread_entry(void);
 /* UART Thread entry function */
 void uart_thread_entry(void)
 {
-    //g_sf_comms.p_api->open(g_sf_comms.p_ctrl, g_sf_comms.p_cfg); //open USB device framework
-
     while(1)
     {
-       // g_sf_comms.p_api->write(g_sf_comms.p_ctrl, input_menu, strlen(input_menu), TX_NO_WAIT); //testing USB communication
+        err = g_sf_uart.p_api->write(g_sf_uart.p_ctrl, (uint8_t *)input_menu, strlen(input_menu), TX_WAIT_FOREVER);
         tx_thread_sleep (10);
     }
 

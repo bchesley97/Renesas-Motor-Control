@@ -182,7 +182,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="mc/m_interpreter.c|mc/m_commands.c|terminal_thread_entry.c|r_motor_bldc.c|led_test_thread_entry.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="USB_Thread_entry.c|mc/m_interpreter.c|mc/m_commands.c|terminal_thread_entry.c|r_motor_bldc.c|led_test_thread_entry.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry excluding="ssp/src/driver/r_motor/r_motor.c|ssp/src/driver/r_motor_bldc/r_motor_bldc.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="synergy"/>
 					</sourceEntries>
 				</configuration>
@@ -393,7 +393,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="mc/m_interpreter.c|mc/m_commands.c|terminal_thread_entry.c|r_motor_bldc.c|led_test_thread_entry.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="USB_Thread_entry.c|mc/m_interpreter.c|mc/m_commands.c|terminal_thread_entry.c|r_motor_bldc.c|led_test_thread_entry.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry excluding="ssp/src/driver/r_motor/r_motor.c|ssp/src/driver/r_motor_bldc/r_motor_bldc.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="synergy"/>
 					</sourceEntries>
 				</configuration>

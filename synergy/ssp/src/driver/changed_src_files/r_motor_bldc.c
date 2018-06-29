@@ -66,13 +66,23 @@ phase_pin_ctrl_t pins_ctrl[] =  { {{PIN_DUTY_0},    {PIN_DUTY_100}, {PIN_DUTY_PW
 phase_pin_ctrl_t *p_pins_ctrl = &pins_ctrl[0];
 
 uint32_t pin_ctrl_u[] = {0x02020001, 0x00000001, 0x00000001, 0x02020001, 0x03020001, 0x03020001};
-uint32_t pin_ctrl_v[] = {0x03020001, 0x03020001,0x02020001,0x00000001, 0x00000001, 0x02020001};
+uint32_t pin_ctrl_v[] = {0x03020001, 0x03020001, 0x02020001, 0x00000001, 0x00000001, 0x02020001};
 uint32_t pin_ctrl_w[] = {0x00000001, 0x02020001, 0x03020001, 0x03020001, 0x02020001, 0x00000001};
+
 
 uint32_t dtc_vect_table[] = { 0x20010000};
 
 const uint32_t * table_address = 0x20000000;
 extern motor_instance_t const *g_motors[16];
+
+//global variables for setting DTC transfer for changing comparator input
+uint8_t cmpctl_coe_0 = 0b10011000; //COE bit is bit 1
+//IVCMP0 is U phase pin, IVCMP1 is V phase pin, IVCMP2 is W phase pin
+uint8_t zero = 0x00;
+uint8_t cmpsel_regs[] = {0x01, 0x04, 0x02, 0x01, 0x04, 0x02}; //input to comparator register values
+uint8_t cmpctl_coe_1 = 0b10011010; //same as cmpctl_coe_0 except coe bit is 1
+uint32_t clear_ielsrn = 0x01000057; //0x057 is ACMP_HS0 source, could possible change
+
 
 void pwm_counter_overflow (void);
 
@@ -663,26 +673,91 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
     *  DTCCR: rrs bit is set even though transfer info alway read since chained
     */
 
-    *dtc_transfer_info_ptr = (uint32_t)((0b01101000 << 24) | (0b00010000 << 16) | 0x0000);
+    *dtc_transfer_info_ptr = (uint32_t)((0b01101000 << 24) | (0b10010000 << 16) | 0x0000);
     dtc_transfer_info_ptr++; //increment pointer
     *dtc_transfer_info_ptr = sar_w;
     dtc_transfer_info_ptr++; //increment pointer
     *dtc_transfer_info_ptr = dar_w;
     dtc_transfer_info_ptr++; //increment pointer
     *dtc_transfer_info_ptr = (uint32_t)(((6 << 8) | 6) << 16);
+    dtc_transfer_info_ptr++; //increment pointer
+
+
+//
+//    /*** now set up DTC (still as the same chain transfer) to change the comparator input to the floating pin ***/
+//    /* the following steps are taken to change the input select register, just occurs via DTC
+//     *  1. Set the CMPCTL.COE bit to 0.
+//        2. Set the CMPSEL0 register to 0000 0000b.
+//        3. Set a new value in the CMPSEL[3:0] bits, with 1 set in only one of the bits.
+//        4. Wait for the input switching stabilization wait time (200 ns).
+//        5. Set the CMPCTL.COE bit to 1.
+//        6. Clear the IR flag in the IELSRn register to clear the interrupt status.
+//     */
+//
+//
+//    *dtc_transfer_info_ptr = (uint32_t)((0b01000000 << 24) | (0b100000000 << 16) | 0x0000);
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &cmpctl_coe_0;
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &R_COMP0->CMPCTL;
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t)(((1 << 8) | 1) << 16);
+//    dtc_transfer_info_ptr++; //increment pointer
+//
+//
+//    *dtc_transfer_info_ptr = (uint32_t)((0b01000000 << 24) | (0b100000000 << 16) | 0x0000);
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &zero;
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &R_COMP0->CMPSEL0;
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t)(((1 << 8) | 1) << 16);
+//    dtc_transfer_info_ptr++; //increment pointer
+//
+//
+//    *dtc_transfer_info_ptr = (uint32_t)((0b01000000 << 24) | (0b100000000 << 16) | 0x0000);
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &cmpsel_regs[0];
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &R_COMP0->CMPSEL0;
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t)(((6 << 8) | 6) << 16);
+//    dtc_transfer_info_ptr++; //increment pointer
+//
+//
+//    *dtc_transfer_info_ptr = (uint32_t)((0b01000000 << 24) | (0b100000000 << 16) | 0x0000);
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &cmpctl_coe_1;
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &R_COMP0->CMPCTL;
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t)(((1 << 8) | 1) << 16);
+//    dtc_transfer_info_ptr++; //increment pointer
+//
+//
+////last transfer, disable chain transfer
+//    *dtc_transfer_info_ptr = (uint32_t)((0b01000000 << 24) | (0b000000000 << 16) | 0x0000);
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &clear_ielsrn;
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t) &R_ICU->IELSRn[4];
+//    dtc_transfer_info_ptr++; //increment pointer
+//    *dtc_transfer_info_ptr = (uint32_t)(((1 << 8) | 1) << 16);
+//    //dtc_transfer_info_ptr++; //increment pointer
+
 
     //3. set transfer info start addresses in DTC vector table
     R_DTC->DTCVBR = (0x200FE000); //lower ten bits should be zero. arbitrary position
 
     //4. set DTCCR.RRS bit to 1 enables skipping of second and subsequent transfer info read cycles for continuous DTC activation from same interrupt
 
-    R_DTC->DTCCR_b.RRS = 1; //deoesnt really matter since the transfer info is always ready when its a chain transfer
+    R_DTC->DTCCR_b.RRS = 1; //doesnt really matter since the transfer info is always ready when its a chain transfer
 
 
     //5. set ICU.IELSRn.DTCE bit to 1. set ICU.IELSRn.IELS as the interrupt sources that trigger DTC. the interrupts must be enabled in NVIC
 
-    R_ICU->IELSRn_b[1].IELS = 0x95; //[1] is the number of events currently in the ICU. 0x95 is the IOPORT2_event trigger. value at [0] is PWM interrupt
-    R_ICU->IELSRn_b[1].DTCE = 1;
+    R_ICU->IELSRn_b[5].IELS = 0x95; //[1] is the number of events currently in the ICU. 0x95 is the IOPORT2_event trigger. value at [0] is PWM interrupt
+    R_ICU->IELSRn_b[5].DTCE = 1;
 
     //6. set enable bit for activation source interrupts to 1. when source interrupt is generated, DTC is activated
     ///not using interrupts so nothing to do here.
@@ -691,6 +766,12 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
     ///this bit is set in the pwm control thread when control switches from open loop to closed loop
 
 }
+
+static inline void enable_pga()
+{
+
+}
+
 
 //initializes DAC12 channel 0 to be used in BEMF sensing
 static inline void enable_bemf_dac()
@@ -818,7 +899,7 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
 
     //set the initial values for open loop control
     p_mtr_pattern_ctrl->vel_accel.velocity = 1000; //velocity is in terms of PWM counts, more counts the slower. Starting at 500 counts
-    p_mtr_pattern_ctrl->vel_accel.acceleration = 10; //initial rate to accelerate at
+    p_mtr_pattern_ctrl->vel_accel.acceleration = 5; //initial rate to accelerate at
     p_mtr_pattern_ctrl->ctrl_type = OPEN_LOOP_CONTROL; //initially starting, use open loop control till back EMF strong enough to sense with comparator
     p_mtr_pattern_ctrl->p_trap_pattern = &trap_pattern[0];
 
@@ -845,6 +926,8 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
             R_BSP_IrqStatusClear(p_ctrl->irq);
             NVIC_ClearPendingIRQ(p_ctrl->irq);
             NVIC_EnableIRQ(p_ctrl->irq);
+
+            enable_bemf_comps();
 
             /* enable the DTC linked with the ELC for closed loop control */
            enable_dtc_elc(p_ctrl); //enable dtc only for one motor

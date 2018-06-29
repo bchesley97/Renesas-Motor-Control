@@ -1,5 +1,5 @@
-Renesas\#\#BSP\#\#Board\#\#s7g2_bp\#\#\#\#1.3.0/all=synergy/board/s7g2_bp/bsp.h|synergy/board/s7g2_bp/bsp_init.c|synergy/board/s7g2_bp/bsp_init.h|synergy/board/s7g2_bp/bsp_leds.c|synergy/board/s7g2_bp/bsp_leds.h
-Renesas\#\#BSP\#\#Board\#\#s7g2_bp\#\#\#\#1.3.0/libraries=
+Renesas\#\#BSP\#\#Board\#\#s7g2_sk\#\#\#\#1.3.0/all=synergy/board/s7g2_sk/bsp.h|synergy/board/s7g2_sk/bsp_init.c|synergy/board/s7g2_sk/bsp_init.h|synergy/board/s7g2_sk/bsp_leds.c|synergy/board/s7g2_sk/bsp_leds.h|synergy/board/s7g2_sk/bsp_qspi.c|synergy/board/s7g2_sk/bsp_qspi.h
+Renesas\#\#BSP\#\#Board\#\#s7g2_sk\#\#\#\#1.3.0/libraries=
 Renesas\#\#BSP\#\#s7g2\#\#device\#\#\#\#1.3.0/all=synergy/ssp/src/bsp/cmsis/Device/RENESAS/S7G2/Include/system_S7G2.h
 Renesas\#\#BSP\#\#s7g2\#\#device\#\#\#\#1.3.0/libraries=
 Renesas\#\#BSP\#\#s7g2\#\#device\#\#R7FS7G27H3A01CFC\#\#1.3.0/all=synergy/ssp/src/bsp/mcu/s7g2/bsp_fmi_R7FS7G27H3A01CFC.c

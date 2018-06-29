@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -17,25 +17,22 @@
  * included in this file may be subject to different terms.
  **********************************************************************************************************************/
 /***********************************************************************************************************************
-* File Name    : bsp_init.h
+* File Name    : bsp_init.c
 * Description  : This module calls any initialization code specific to this BSP.
 ***********************************************************************************************************************/
 
 /*******************************************************************************************************************//**
- * @ingroup BSP_BOARD_BP
- * @defgroup BSP_BOARD_BP_INIT Board Specific Code
- * @brief Board specific code for the S7G2 Biplane Board
- *
- * This is code specific to the S7G2 Biplane board. 
+ * @addtogroup BSP_BOARD_S7G2SK_INIT
  *
  * @{
+ **********************************************************************************************************************/
+
+/***********************************************************************************************************************
+Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
+#include "bsp_api.h"
 
-#ifndef BSP_INIT_H_
-#define BSP_INIT_H_
-
-/** Common macro for SSP header files. There is also a corresponding SSP_FOOTER macro at the end of this file. */
-SSP_HEADER
+#if defined(BSP_BOARD_S7G2_SK)
 
 /***********************************************************************************************************************
 Macro definitions
@@ -46,17 +43,28 @@ Typedef definitions
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-Exported global variables
+Exported global variables (to be accessed by other files)
 ***********************************************************************************************************************/
-
+ 
 /***********************************************************************************************************************
-Exported global functions (to be accessed by other files)
+Private global variables and functions
 ***********************************************************************************************************************/
-void bsp_init(void * p_args);
 
-/** Common macro for SSP header files. There is also a corresponding SSP_HEADER macro at the top of this file. */
-SSP_FOOTER
+/*******************************************************************************************************************//**
+ * @brief      Performs any initialization specific to this BSP.
+ *
+ * @param[in]  p_args         Pointer to arguments of the user's choice.
+ **********************************************************************************************************************/
+void bsp_init (void * p_args)
+{
+    SSP_PARAMETER_NOT_USED(p_args);
 
-#endif /* BSP_INIT_H_ */
+    /** Initialize QSPI flash memory. */
+    bsp_qspi_init();
+}
 
-/** @} (end defgroup BSP_BOARD_DK2M_INIT) */
+
+#endif
+
+/** @} (end addtogroup BSP_BOARD_S7G2SK_INIT) */
+

@@ -22,11 +22,11 @@
 ***********************************************************************************************************************/
 
 /*******************************************************************************************************************//**
- * @ingroup BSP_BOARD_S7G2_BP
- * @defgroup BSP_BP_LEDS Board LEDs
+ * @ingroup BSP_BOARD_S7G2SK
+ * @defgroup BSP_BOARD_S7G2SK_LEDS Board LEDs
  * @brief LED information for this board.
  *
- * This is code specific to the S7G2 BP board. It includes info on the number of LEDs and which pins are they are on.
+ * This is code specific to the S7G2-SK board. It includes info on the number of LEDs and which pins are they are on.
  *
  * @{
 ***********************************************************************************************************************/
@@ -48,16 +48,10 @@ SSP_HEADER
  * found in the bsp_leds_t structure. */
 typedef enum e_bsp_led
 {
-    BSP_LED_LED1    = 0,
-    BSP_LED_LED2,
-    BSP_LED_LED3,
-    BSP_LED_LED4,
-    BSP_LED_LED5,
-    BSP_LED_LED6,
-    BSP_LED_LED7,
-    BSP_LED_LED8
-
-} bsp_led_t;
+    BSP_LED_LED1    = 0,    ///< LED1 - Green
+    BSP_LED_LED2    = 1,    ///< LED2 - Red
+    BSP_LED_LED3    = 2,    ///< LED3 - Yellow
+} bsp_led_t; 
 
 /***********************************************************************************************************************
  * Exported global variables
@@ -72,4 +66,4 @@ SSP_FOOTER
 
 #endif /* BSP_BOARD_LEDS_H */
 
-/** @} (end defgroup BSP_BP_LEDS) */
+/** @} (end defgroup BSP_BOARD_S7G2SK_LEDS) */

@@ -71,7 +71,7 @@ SSP_VECTOR_DEFINE_CHAN(sci_uart_rxi_isr, SCI, RXI, 0);
 SSP_VECTOR_DEFINE_CHAN(sci_uart_txi_isr, SCI, TXI, 0);
 #endif
 #endif
-#if (4) != BSP_IRQ_DISABLED
+#if (5) != BSP_IRQ_DISABLED
 #if !defined(SSP_SUPPRESS_ISR_g_uart0) && !defined(SSP_SUPPRESS_ISR_SCI0)
 SSP_VECTOR_DEFINE_CHAN(sci_uart_tei_isr, SCI, TEI, 0);
 #endif
@@ -107,7 +107,7 @@ const uart_cfg_t g_uart0_cfg =
 #endif   
 #undef SYNERGY_NOT_DEFINED            
   .rxi_ipl = (4),
-  .txi_ipl = (4), .tei_ipl = (4), .eri_ipl = (BSP_IRQ_DISABLED), };
+  .txi_ipl = (4), .tei_ipl = (5), .eri_ipl = (BSP_IRQ_DISABLED), };
 
 /* Instance structure to use this module. */
 const uart_instance_t g_uart0 =

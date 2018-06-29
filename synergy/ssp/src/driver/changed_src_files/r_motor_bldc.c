@@ -153,10 +153,18 @@ extern void (*sf_callback)(void);
 extern bool irq_handler_set;
 
 //function to change duty cycle of waveform
-void change_pwm_duty(uint32_t duty_cycle_percent, motor_ctrl_t * const p_ctrl)
+void change_pwm_duty(uint32_t duty_cycle_percent)
 {
 
+
+    if(duty_cycle_percent > 100)
+    {
+        return; //basic parameter checking
+    }
+
     uint32_t duty_value_ticks = g_motors[1]->p_ctrl->pwm_period - (uint32_t)((g_motors[1]->p_ctrl->pwm_period * duty_cycle_percent)/100.0f);
+
+    motor_ctrl_t * const p_ctrl = g_motors[1]->p_ctrl;
 
     //this function changes the pwm of all three GPT timers used (for each phase)
     p_ctrl->p_gpt_u->GTDTCR_b.TDE = 0; //set this value zero so new GTDVU value updated when TDE bit set to 1
@@ -962,7 +970,7 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
 
 
 
-        change_pwm_duty(5, p_ctrl); //change duty cycle to one percent
+        change_pwm_duty(1); //change duty cycle to one percent
 
         //set registers such that the first waveform displayed via PWM is the FIRST waveform
         p_ctrl->p_gpt_u->GTUDDTYC = pin_ctrl_u[0];

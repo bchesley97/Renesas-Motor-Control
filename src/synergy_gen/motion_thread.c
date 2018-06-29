@@ -84,8 +84,8 @@ sf_motion_cfg_t g_sf_motion2_cfg =
   .pin_fault = IOPORT_PORT_06_PIN_06,
 
   /* Hall sensor feedback configuration */
-  .pin_hall_u = IN_F1,
-  .pin_hall_v = IN_R1, .pin_hall_w = IN_X1,
+  .pin_hall_u = 0,
+  .pin_hall_v = 0, .pin_hall_w = 0,
 
   /* Brake output configuration */
   .pin_brake = 0,
@@ -190,8 +190,8 @@ sf_motion_cfg_t g_sf_motion1_cfg =
   .pin_fault = IOPORT_PORT_06_PIN_06,
 
   /* Hall sensor feedback configuration */
-  .pin_hall_u = IN_R1,
-  .pin_hall_v = IN_F1, .pin_hall_w = IN_X1,
+  .pin_hall_u = 0,
+  .pin_hall_v = 0, .pin_hall_w = 0,
 
   /* Brake output configuration */
   .pin_brake = 0,

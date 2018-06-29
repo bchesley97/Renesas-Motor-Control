@@ -113,7 +113,7 @@ typedef struct mtr_added_ctrl
 /*** Defines ***/
 #define CONTROL_SWITCH_VELOCITY (67)   //velocity to switch from open to closed loop control at 3,000 rpms. around 67 pwm periods at a rate of 20KHz
 
-void change_pwm_duty(uint32_t duty_cycle_percent, motor_ctrl_t * const p_ctrl);
+void change_pwm_duty(uint32_t duty_cycle_percent);
 
 /*******************************************************************************************************************//**
  * @} (end defgroup TIMER_API)

@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2017] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
+ * Copyright [2015] Renesas Electronics Corporation and/or its licensors. All Rights Reserved.
  * 
  * This file is part of Renesas SynergyTM Software Package (SSP)
  *
@@ -17,59 +17,46 @@
  * included in this file may be subject to different terms.
  **********************************************************************************************************************/
 /***********************************************************************************************************************
-* File Name    : bsp_leds.c
-* Description  : This module has information about the LEDs on this board.
+* File Name    : bsp_init.h
+* Description  : This module calls any initialization code specific to this BSP.
 ***********************************************************************************************************************/
 
 /*******************************************************************************************************************//**
- * @addtogroup BSP_BP_LEDS
+ * @ingroup BSP_BOARD_S7G2SK
+ * @defgroup BSP_BOARD_S7G2SK_INIT Board Specific Code
+ * @brief Board specific code for the S7G2-SK Board
+ *
+ * This is code specific to the S7G2-SK board. It includes code to setup the SDRAM.
  *
  * @{
- **********************************************************************************************************************/
+***********************************************************************************************************************/
+
+#ifndef BSP_INIT_H_
+#define BSP_INIT_H_
+
+/** Common macro for SSP header files. There is also a corresponding SSP_FOOTER macro at the end of this file. */
+SSP_HEADER
 
 /***********************************************************************************************************************
- * Includes
- **********************************************************************************************************************/
-#include "bsp_api.h"
-
-#if defined(BSP_BOARD_S7G2_BP)
+Macro definitions
+***********************************************************************************************************************/
 
 /***********************************************************************************************************************
- * Macro definitions
- **********************************************************************************************************************/
+Typedef definitions
+***********************************************************************************************************************/
 
 /***********************************************************************************************************************
- * Typedef definitions
- **********************************************************************************************************************/
+Exported global variables
+***********************************************************************************************************************/
 
 /***********************************************************************************************************************
- * Private global variables and functions
- **********************************************************************************************************************/
-/** Array of LED IOPORT pins. */
-static const ioport_port_pin_t g_bsp_prv_leds[] =
-{
-    IOPORT_PORT_03_PIN_08,  ///< LED1
-    IOPORT_PORT_03_PIN_09,  ///< LED2
-    IOPORT_PORT_03_PIN_10,  ///< LED3
-    IOPORT_PORT_03_PIN_11,  ///< LED4
-    IOPORT_PORT_03_PIN_12,  ///< LED5
-    IOPORT_PORT_03_PIN_13,  ///< LED6
-    IOPORT_PORT_03_PIN_14,  ///< LED7
-    IOPORT_PORT_03_PIN_15,  ///< LED8
-};
+Exported global functions (to be accessed by other files)
+***********************************************************************************************************************/
+void bsp_init(void * p_args);
 
-/***********************************************************************************************************************
- * Exported global variables (to be accessed by other files)
- **********************************************************************************************************************/
-/** Structure with LED information for this board. Recommended to get this information through R_BSP_LedsGet() function
- * instead of using this structure directly to remove dependency on structure name. */
-const bsp_leds_t g_bsp_leds =
-{
-    .led_count  = (uint16_t)(((uint16_t)sizeof(g_bsp_prv_leds) / (uint16_t)sizeof(g_bsp_prv_leds[0U]))),
-    .p_leds     = &g_bsp_prv_leds[0]
-};
+/** Common macro for SSP header files. There is also a corresponding SSP_HEADER macro at the top of this file. */
+SSP_FOOTER
 
-#endif
+#endif /* BSP_INIT_H_ */
 
-/** @} (end addtogroup BSP_DK2M_LEDS) */
-
+/** @} (end defgroup BSP_BOARD_S7G2SK_INIT) */

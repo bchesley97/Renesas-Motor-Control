@@ -19,9 +19,10 @@ synergy/ssp/src/driver/r_cgc/hw/hw_cgc.o: \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\s7g2\bsp_elc.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\s7g2\bsp_cache.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\bsp/bsp_board_cfg.h \
- c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_bp\bsp.h \
- c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_bp\bsp_init.h \
- c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_bp\bsp_leds.h \
+ c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_sk\bsp.h \
+ c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_sk\bsp_init.h \
+ c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_sk\bsp_leds.h \
+ c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_sk\bsp_qspi.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\all\bsp_common.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\inc\ssp_common_api.h \
  c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\all\bsp_compiler_support.h \
@@ -85,11 +86,13 @@ c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\s7g2\bs
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\bsp/bsp_board_cfg.h:
 
-c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_bp\bsp.h:
+c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_sk\bsp.h:
 
-c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_bp\bsp_init.h:
+c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_sk\bsp_init.h:
 
-c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_bp\bsp_leds.h:
+c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_sk\bsp_leds.h:
+
+c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\board\s7g2_sk\bsp_qspi.h:
 
 c:\users\britton.chesley\e2_studio\workspace\s7g\synergy\ssp\src\bsp\mcu\all\bsp_common.h:
 

@@ -24,7 +24,7 @@ RM := rm -rf
 -include synergy/ssp/src/bsp/mcu/s7g2/subdir.mk
 -include synergy/ssp/src/bsp/mcu/all/subdir.mk
 -include synergy/ssp/src/bsp/cmsis/Device/RENESAS/S7G2/Source/subdir.mk
--include synergy/board/s7g2_bp/subdir.mk
+-include synergy/board/s7g2_sk/subdir.mk
 -include src/synergy_gen/subdir.mk
 -include src/mc/changed_mc/subdir.mk
 -include src/subdir.mk

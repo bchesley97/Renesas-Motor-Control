@@ -30,6 +30,8 @@
 ******************************************************************************/
 
 #include "sf_motion.h"
+#include "r_motor_api_changed.h"
+
 
 /* Buffers size definitions */
 #define TX_BUF_SIZE     100
@@ -187,7 +189,7 @@ uint16_t m_forward(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value)
 uint16_t m_reverse(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
 uint16_t m_reset(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
 uint16_t m_servoOn(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
-uint16_t m_servoOff(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
+//uint16_t m_servoOff(sf_motion_instance_t *cm, bool arg_set, int32_FFt *p_arg_value);
 uint16_t m_powerOn(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
 uint16_t m_powerOff(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
 uint16_t m_smoothStop(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
@@ -214,3 +216,11 @@ uint16_t m_pos_invert(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_val
 uint16_t m_save(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
 uint16_t m_restore(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
 uint16_t m_freq(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
+
+/************************ Added functions for BLDC sensorless control ********************/
+
+uint16_t m_setpwm(sf_motion_instance_t *cm, bool arg_set, int32_t *p_arg_value);
+
+
+
+

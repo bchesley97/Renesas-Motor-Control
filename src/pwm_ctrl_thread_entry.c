@@ -32,8 +32,8 @@ void pwm_ctrl_thread_entry(void)
 //                if(acceleration_counter > 9)
 //                {
 //                    acceleration_counter = 0;
-//                    change_pwm_duty(pwm_duty_cycle, g_motors[1]->p_ctrl);
-//                    pwm_duty_cycle+=3;
+//                    change_pwm_duty(pwm_duty_cycle);
+//                    pwm_duty_cycle+=1;
 //
 //                }
 

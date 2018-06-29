@@ -36,15 +36,17 @@ C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/bsp_mcu_family_cfg.h \
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp\\bsp_cfg.h \
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/bsp_board_cfg.h \
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp.h \
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp_init.h \
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp.h \
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp_leds.h \
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp.h \
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp.h \
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp_init.h \
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp.h \
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp_leds.h \
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp.h \
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp_qspi.h \
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp_qspi.h \
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp.h \
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/bsp_board_cfg.h \
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp\\bsp_cfg.h \
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy\\ssp\\inc\\bsp\\bsp_api.h \
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy\\ssp\\inc\\bsp/../../src/bsp/mcu/all/bsp_common.h \
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy\\ssp\\inc\\bsp/../../src/bsp/mcu/all/bsp_common.h \
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy\\ssp\\inc\\bsp/../../src/bsp/mcu/all/bsp_common.h \
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy\\ssp\\inc\\bsp/../../src/bsp/mcu/all/bsp_common.h \
@@ -185,23 +187,27 @@ C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp
 
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/bsp_board_cfg.h:
 
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp.h:
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp.h:
 
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp_init.h:
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp_init.h:
 
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp.h:
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp.h:
 
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp_leds.h:
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp_leds.h:
 
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_bp/bsp.h:
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp.h:
+
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp_qspi.h:
+
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp_qspi.h:
+
+C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/../../../synergy/board/s7g2_sk/bsp.h:
 
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp/bsp_board_cfg.h:
 
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy_cfg\\ssp_cfg\\bsp\\bsp_cfg.h:
 
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy\\ssp\\inc\\bsp\\bsp_api.h:
-
-C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy\\ssp\\inc\\bsp/../../src/bsp/mcu/all/bsp_common.h:
 
 C:\\Users\\britton.chesley\\e2_studio\\workspace\\S7G\\synergy\\ssp\\inc\\bsp/../../src/bsp/mcu/all/bsp_common.h:
 

@@ -9,6 +9,8 @@ extern "C" void motion_thread_entry(void);
 #else 
 extern void motion_thread_entry(void);
 #endif
+#include "r_adc.h"
+#include "r_adc_api.h"
 #include "r_encoder_api.h"
 #include "r_encoder_gpt.h"
 #include "r_motor_api.h"
@@ -17,6 +19,11 @@ extern void motion_thread_entry(void);
 #ifdef __cplusplus
 extern "C"
 {
+#endif
+/** ADC on ADC Instance. */
+extern const adc_instance_t g_adc0;
+#ifndef NULL
+void NULL(adc_callback_args_t *p_args);
 #endif
 /** Encoder on GPT instance */
 extern encoder_instance_t g_r_encoder_gpt2;

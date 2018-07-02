@@ -28,22 +28,22 @@ void pwm_ctrl_thread_entry(void)
             {
                 p_mtr_pattern_ctrl->vel_accel.velocity -= p_mtr_pattern_ctrl->vel_accel.acceleration; //add acceleration to the velocity (subtracting because these are in terms of pwm cycles)
 
-//                acceleration_counter++;
-//                if(acceleration_counter > 9)
-//                {
-//                    acceleration_counter = 0;
-//                    change_pwm_duty(pwm_duty_cycle);
-//                    pwm_duty_cycle+=1;
-//
-//                }
+                acceleration_counter++;
+                if(acceleration_counter > 80)
+                {
+                    acceleration_counter = 0;
+                    change_pwm_duty(pwm_duty_cycle);
+                    pwm_duty_cycle+=1;
+
+                }
 
 
-                tx_thread_sleep (2); //update every 500 ms
+                tx_thread_sleep (10); //update every 500 ms
             }
 
             else if(p_pins_ctrl == &pins_ctrl[5]) //only switch control to closed loop when the pattern is the last in the sequence
             {
-                R_DTC->DTCST = 1; //start DTC
+                //R_DTC->DTCST = 1; //start DTC
                 //p_mtr_pattern_ctrl->ctrl_type = CLOSED_LOOP_CONTROL; //hit user defined unit for switching to closed loop control, start PID control
 
                 tx_thread_sleep (1); //update every 10 ms, less for closed loop control (faster speeds)

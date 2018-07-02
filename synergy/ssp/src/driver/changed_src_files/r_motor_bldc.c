@@ -204,7 +204,7 @@ static void motor_bldc_init(R_GPTA0_Type *p_gpt, uint16_t ch, uint32_t period, b
 
     if (center_aligned) //center aligned?
     {                                                                                       ///< Triangle wave PWM mode 1 (16-bit transfer at crest) (single or double buffer)
-        HW_GPT_ModeSet(p_gpt, half_cycle_reload ? GPT_MODE_TW_PWM_2 : GPT_MODE_TW_PWM_1);  ///< Triangle wave PWM mode 2 (16-bit transfer at trough) (single or double buffer)
+        HW_GPT_ModeSet(p_gpt, GPT_MODE_TW_PWM_1);  ///< Triangle wave PWM mode 2 (16-bit transfer at trough) (single or double buffer)
     }
     else
     {
@@ -775,8 +775,32 @@ static inline void enable_dtc_elc(motor_ctrl_t * const p_ctrl)
 
 }
 
-static inline void enable_pga()
+static inline void enable_pgas()
 {
+
+    //enable writing to the ADC
+    R_MSTP->MSTPCRD_b.MSTPD16 = 0; //enable writing to adc's registers
+
+    /* enable the three PGAs for the three BEMF waveforms */
+    R_S12ADC0->ADPGACR_b.P000SEL0 = 0; //do not output the signal in a path bypassing pga amplifier
+    R_S12ADC0->ADPGACR_b.P000SEL1 = 1; //output singla in a path through pga amplifier
+    R_S12ADC0->ADPGACR_b.P000ENAMP = 1; //use pga amplifier
+    R_S12ADC0->ADPGACR_b.P000GEN = 1; //enable gain setting
+
+    R_S12ADC0->ADPGACR_b.P001SEL0 = 0; //do not output the signal in a path bypassing pga amplifier
+    R_S12ADC0->ADPGACR_b.P001SEL1 = 1; //output singla in a path through pga amplifier
+    R_S12ADC0->ADPGACR_b.P001ENAMP = 1;//use pga amplifier
+    R_S12ADC0->ADPGACR_b.P001GEN = 1; //enable gain setting
+
+    R_S12ADC0->ADPGACR_b.P002SEL0 = 0; //do not output the signal in a path bypassing pga amplifier
+    R_S12ADC0->ADPGACR_b.P002SEL1 = 1; //output singla in a path through pga amplifier
+    R_S12ADC0->ADPGACR_b.P002ENAMP = 1;//use pga amplifier
+    R_S12ADC0->ADPGACR_b.P002GEN = 1; //enable gain setting
+
+    R_S12ADC0->ADPGAGS0_b.P000GAIN = 0b000; // gain of 2
+    R_S12ADC0->ADPGAGS0_b.P001GAIN = 0b000; // gain of 2
+    R_S12ADC0->ADPGAGS0_b.P002GAIN = 0b000; // gain of 2
+
 
 }
 
@@ -784,15 +808,19 @@ static inline void enable_pga()
 //initializes DAC12 channel 0 to be used in BEMF sensing
 static inline void enable_bemf_dac()
 {
-    // measured value for bemf is 0.19V (not 100% sure this value is correct)
+    //to access the DACs registers, need to cancel module stop state
+    R_MSTP->MSTPCRD_b.MSTPD20 = 0; //enable writing to dac's registers
 
-    // DAC equation: V= dac/4096 * 3.3. Plugging in V = 0.19 yields DAC = 235.83 ~= 236 = 0xEC.
+    //select pin to use as DAC0
+    ///P014 is configured in the synergy configuration window for DAC0 operation
+
+    // measured value for bemf is 0.19V
+    // DAC equation: V= dac/4096 * 3.3. Plugging in V = 0.19*2 (multiply by two for pga gain) yields DAC = 471.66 ~= 472 = 0x.
 
     //12 bit digital value to be converted to an analog value and used as input to the comparator
-    R_DAC->DADRn[0] = 0x00EC; //DADR[0] is DADR0. value outputted from dac (0.19V)
+    R_DAC->DADRn[0] = 0x01D8; //DADR[0] is DADR0. value outputted from dac (0.19V * 2)
     R_DAC->DADPR_b.DPSEL = 0; //right justified 12 bit value
-    R_DAC->DACR = 0b01000000; //enable D/A conversion of Channel 0, analog output is also enables (wont need since being used in internal comparator)
-
+    R_DAC->DACR_b.DAOE0 = 1; //enable D/A conversion of Channel 0, analog output is also enables (wont need since being used in internal comparator)
 }
 
 
@@ -801,14 +829,28 @@ static inline void enable_bemf_dac()
 static inline void enable_bemf_comps()
 {
 
+
     //enable DAC for comparator reference input
     enable_bemf_dac();
 
+    enable_pgas(); //enable pga comparator input
+
+    /** Since the PGAs are needed to detect the back emf waveform, need to use three different comparators with three pga inputs ***/
+
+    //need to disable module stop function
+    R_MSTP->MSTPCRD_b.MSTPD28 = 0; //enable writing to comparator registers (comparator 0)
+    R_MSTP->MSTPCRD_b.MSTPD27 = 0; //enable writing to comparator registers (comparator 1)
+    R_MSTP->MSTPCRD_b.MSTPD26 = 0; //enable writing to comparator registers (comparator 2)
+
+
     /** U is IVCMP0, V is IVCMP1, W is IVCMP2 **/
 
-    //configure input to comparator
-    R_COMP0->CMPSEL0_b.CMPSEL = 0b0001; //arbitrarily select IVCMP0 as input, THIS WILL CHANGE AS THE PHASE PATTERN CHANGES
+    //AN000, AN001, and AN002 are already configured with the configuration view
 
+    /*** Configuration for comparator 0 ***/
+
+    //configure input to comparator
+    R_COMP0->CMPSEL0_b.CMPSEL = 0b1000; //select PGA output as inpput to this comparator
     //configure comparator reference, DAC12 channel 0, on pin P014
     R_COMP0->CMPSEL1_b.CRVS = 0b1000; //IVREF3 corresponds to DAC Channel. this configuration register is static
 
@@ -818,12 +860,69 @@ static inline void enable_bemf_comps()
     //configure output activation level
     R_COMP0->CMPMON_b.CMPMON = 1; //comparator output is active high (also configure for rising edge interrupt)
 
-    //can modify the CPIOC register to enable the output pin of the comparator output, dont need since just need the interrupt firing
+    //writing to control register
+    R_COMP0->CMPCTL_b.CEG = 0b11; //detect both edges since the back emf waveform will be crossing with both positive and negative slope
+    R_COMP0->CMPCTL_b.CSTEN = 0; //output through the edge selector
+    R_COMP0->CMPCTL_b.CDFS = 0b11; //use noise filter sampling frequency of pclkb/2^5
+    R_COMP0->CMPCTL_b.COE = 1; //enable comparator output
+    R_COMP0->CMPCTL_b.HCMPON = 1; //enable operation (enables input to comparator pins)
+
+    R_BSP_SoftwareDelay(1,BSP_DELAY_UNITS_MICROSECONDS); //wait 300 ns for comparator output
+
+    /*** Configuration for comparator 1 ***/
+    //configure input to comparator
+    R_COMP1->CMPSEL0_b.CMPSEL = 0b1000; //select PGA output as inpput to this comparator
+    //configure comparator reference, DAC12 channel 0, on pin P014
+    R_COMP1->CMPSEL1_b.CRVS = 0b1000; //IVREF3 corresponds to DAC Channel. this configuration register is static
+
+    //in order to change the above crvs bits, need to set CMPCTL.COE to zero, then set the CMPSEL1 reg to 0, set new CRVS value, wait 200 ns, set CMPCTL.COE to 1, clear IR flag i IELSRn register to clear interrupt status
+    R_BSP_SoftwareDelay(1,BSP_DELAY_UNITS_MICROSECONDS); //wait 200 ns, might create latency
+
+    //configure output activation level
+    R_COMP1->CMPMON_b.CMPMON = 1; //comparator output is active high (also configure for rising edge interrupt)
 
     //writing to control register
-    R_COMP0->CMPCTL_b.COE = 1; //enable comparator output
-    R_COMP0->CMPCTL_b.CEG = 0b01; //detect rising edge (of comparator output I think...)
-    R_COMP0->CMPCTL_b.HCMPON = 1; //enable operation (enables input to comparator pins)
+    R_COMP1->CMPCTL_b.CEG = 0b11; //detect both edges since the back emf waveform will be crossing with both positive and negative slope
+    R_COMP1->CMPCTL_b.CSTEN = 0; //output through the edge selector
+    R_COMP1->CMPCTL_b.CDFS = 0b11; //use noise filter sampling frequency of pclkb/2^5
+    R_COMP1->CMPCTL_b.COE = 1; //enable comparator output
+    R_COMP1->CMPCTL_b.HCMPON = 1; //enable operation (enables input to comparator pins)
+
+    R_BSP_SoftwareDelay(1,BSP_DELAY_UNITS_MICROSECONDS); //wait 300 ns for comparator output
+
+
+    /*** Configuration for comparator 2 ***/
+    //configure input to comparator
+    R_COMP2->CMPSEL0_b.CMPSEL = 0b1000; //select PGA output as inpput to this comparator
+    //configure comparator reference, DAC12 channel 0, on pin P014
+    R_COMP2->CMPSEL1_b.CRVS = 0b1000; //IVREF3 corresponds to DAC Channel. this configuration register is static
+
+    //in order to change the above crvs bits, need to set CMPCTL.COE to zero, then set the CMPSEL1 reg to 0, set new CRVS value, wait 200 ns, set CMPCTL.COE to 1, clear IR flag i IELSRn register to clear interrupt status
+    R_BSP_SoftwareDelay(1,BSP_DELAY_UNITS_MICROSECONDS); //wait 200 ns, might create latency
+
+    //configure output activation level
+    R_COMP2->CMPMON_b.CMPMON = 1; //comparator output is active high (also configure for rising edge interrupt)
+
+    //writing to control register
+    R_COMP2->CMPCTL_b.CEG = 0b11; //detect both edges since the back emf waveform will be crossing with both positive and negative slope
+    R_COMP2->CMPCTL_b.CSTEN = 0; //output through the edge selector
+    R_COMP2->CMPCTL_b.CDFS = 0b11; //use noise filter sampling frequency of pclkb/2^5
+    R_COMP2->CMPCTL_b.COE = 1; //enable comparator output
+    R_COMP2->CMPCTL_b.HCMPON = 1; //enable operation (enables input to comparator pins)
+
+    R_BSP_SoftwareDelay(1,BSP_DELAY_UNITS_MICROSECONDS); //wait 300 ns for comparator output
+
+
+    /** set up interrupt for comparator. the first phase will be detecting the V floating pin */
+//
+//    uint8_t comparator_irq = 3;
+//    R_ICU->IELSRn[comparator_irq] = ELC_EVENT_COMP_HS_1; //this will change as the commutation pattern changes
+//
+//    NVIC_SetPriority(comparator_irq, 1);
+//    R_BSP_IrqStatusClear(comparator_irq);
+//    NVIC_ClearPendingIRQ(comparator_irq);
+//    NVIC_EnableIRQ(comparator_irq);
+
 }
 
 
@@ -907,7 +1006,7 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
 
     //set the initial values for open loop control
     p_mtr_pattern_ctrl->vel_accel.velocity = 1000; //velocity is in terms of PWM counts, more counts the slower. Starting at 500 counts
-    p_mtr_pattern_ctrl->vel_accel.acceleration = 5; //initial rate to accelerate at
+    p_mtr_pattern_ctrl->vel_accel.acceleration = 2; //initial rate to accelerate at
     p_mtr_pattern_ctrl->ctrl_type = OPEN_LOOP_CONTROL; //initially starting, use open loop control till back EMF strong enough to sense with comparator
     p_mtr_pattern_ctrl->p_trap_pattern = &trap_pattern[0];
 
@@ -963,7 +1062,7 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
     /*** Complementary mode ***/
     if (p_ctrl->p_cfg->output_mode == PWM_OUT_COMPLEMENTARY) //only initialize and start the trapezoidal commutation timers
     {
-        float dead_time_ns = 100;
+        float dead_time_ns = 1000; //1 us dead time. need this value for when the motor starts running at high RP
         gpt_set_pins_comp(p_ctrl->p_gpt_u, &dead_time_ns); //second argument is in NANOSECONDS, since dealing with small duty cycles
         gpt_set_pins_comp(p_ctrl->p_gpt_v, &dead_time_ns);
         gpt_set_pins_comp(p_ctrl->p_gpt_w, &dead_time_ns);

@@ -25,6 +25,7 @@ synergy/ssp/src/bsp/cmsis/Device/RENESAS/S7G2/Source \
 synergy/ssp/src/bsp/mcu/all \
 synergy/ssp/src/bsp/mcu/s7g2 \
 synergy/ssp/src/driver/changed_src_files \
+synergy/ssp/src/driver/r_adc \
 synergy/ssp/src/driver/r_cgc/hw \
 synergy/ssp/src/driver/r_cgc \
 synergy/ssp/src/driver/r_dtc \

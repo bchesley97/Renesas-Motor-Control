@@ -81,6 +81,7 @@ void pwm_counter_overflow (void)
 
     if(pwm_cycle_cntr >= p_mtr_pattern_ctrl->vel_accel.velocity && p_mtr_pattern_ctrl->ctrl_type == OPEN_LOOP_CONTROL)
     {
+
         pwm_cycle_cntr = 0;
 
         //update pointer holding data about pin levels for specific trapezoidal commutation
@@ -98,13 +99,18 @@ void pwm_counter_overflow (void)
 
         /*** Update timer pins output ***/
         //update U timer
-//        trap_motor->p_ctrl->p_gpt_u->GTUDDTYC = pins_u;   //changing the OADTY/OBDTY bits allows for synchronous changing of the timer's pin outputs at a timer underflow
-//
-//        //update V timer
-//        trap_motor->p_ctrl->p_gpt_v->GTUDDTYC = pins_v;
-//
-//        //update W timer
-//        trap_motor->p_ctrl->p_gpt_w->GTUDDTYC = pins_w;
+        trap_motor->p_ctrl->p_gpt_u->GTUDDTYC = pins_u;   //changing the OADTY/OBDTY bits allows for synchronous changing of the timer's pin outputs at a timer underflow
+
+        //update V timer
+        trap_motor->p_ctrl->p_gpt_v->GTUDDTYC = pins_v;
+
+        //update W timer
+        trap_motor->p_ctrl->p_gpt_w->GTUDDTYC = pins_w;
+
+    }
+    else if (p_mtr_pattern_ctrl == CLOSED_LOOP_CONTROL)
+    {
+        //for closed loop control
 
     }
 

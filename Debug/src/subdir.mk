@@ -4,16 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/hal_entry.c \
 ../src/motion_thread_entry.c \
 ../src/pwm_ctrl_thread_entry.c \
 ../src/uart_thread_entry.c 
 
 OBJS += \
+./src/hal_entry.o \
 ./src/motion_thread_entry.o \
 ./src/pwm_ctrl_thread_entry.o \
 ./src/uart_thread_entry.o 
 
 C_DEPS += \
+./src/hal_entry.d \
 ./src/motion_thread_entry.d \
 ./src/pwm_ctrl_thread_entry.d \
 ./src/uart_thread_entry.d 

@@ -914,10 +914,10 @@ static inline void enable_bemf_comps()
 
 
     /** set up interrupt for comparator. the first phase will be detecting the V floating pin */
-//
-//    uint8_t comparator_irq = 3;
-//    R_ICU->IELSRn[comparator_irq] = ELC_EVENT_COMP_HS_1; //this will change as the commutation pattern changes
-//
+    //not currently enabling irq in NVIC, just in ICU to see if the flag is being set
+    uint8_t comparator_irq = 3;
+    R_ICU->IELSRn[comparator_irq] = ELC_EVENT_COMP_HS_1; //this will change as the commutation pattern changes
+
 //    NVIC_SetPriority(comparator_irq, 1);
 //    R_BSP_IrqStatusClear(comparator_irq);
 //    NVIC_ClearPendingIRQ(comparator_irq);
@@ -1042,8 +1042,6 @@ ssp_err_t R_Motor_BLDC_Open (motor_ctrl_t * const p_ctrl, motor_cfg_t * const p_
         }
 
     }
-
-
 
     /**** Independent modes ****/
     if (p_ctrl->p_cfg->output_mode == PWM_OUT_INDEPENDENT_A)

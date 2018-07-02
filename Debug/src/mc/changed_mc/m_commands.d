@@ -64,10 +64,6 @@ src/mc/changed_mc/m_commands.o: ../src/mc/changed_mc/m_commands.c \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\framework\el/tx_user.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\el/tx_cmsis.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\src\synergy_gen/hal_data.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_adc.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_adc_cfg.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_adc_api.h \
- C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_encoder_gpt.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_motor_bldc.h \
  ../src/mc/changed_mc/m_common.h \
@@ -75,6 +71,7 @@ src/mc/changed_mc/m_commands.o: ../src/mc/changed_mc/m_commands.c \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\instances/sf_uart_comms.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_uart_api.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h \
+ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\api/sf_comms_api.h \
  C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\framework/sf_uart_comms_cfg.h
 
@@ -208,14 +205,6 @@ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\el/tx
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\src\synergy_gen/hal_data.h:
 
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_adc.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy_cfg\ssp_cfg\driver/r_adc_cfg.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_adc_api.h:
-
-C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
-
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_encoder_gpt.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\instances/r_motor_bldc.h:
@@ -229,6 +218,8 @@ C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\insta
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_uart_api.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_transfer_api.h:
+
+C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\driver\api/r_elc_api.h:
 
 C:\Users\britton.chesley\e2_studio\workspace\S7G\synergy\ssp\inc\framework\api/sf_comms_api.h:
 

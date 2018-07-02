@@ -912,7 +912,6 @@ static inline void enable_bemf_comps()
 
     R_BSP_SoftwareDelay(1,BSP_DELAY_UNITS_MICROSECONDS); //wait 300 ns for comparator output
 
-
     /** set up interrupt for comparator. the first phase will be detecting the V floating pin */
     //not currently enabling irq in NVIC, just in ICU to see if the flag is being set
     uint8_t comparator_irq = 3;
